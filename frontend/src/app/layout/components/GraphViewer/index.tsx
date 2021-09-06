@@ -37,15 +37,14 @@ export default class GraphViewer extends React.Component {
         } 
     }
 
+    render() {
+        return(
 
-  render() {
-    return(
+            <div>
 
-        <div>
+            </div>
 
-        </div>
-
-    )
-  };
+        )
+    };
 
 };

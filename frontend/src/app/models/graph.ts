@@ -11,6 +11,6 @@ export interface IEdge {
 };
 
 export interface IGameGraph {
-    nodes: INode[],
-    edges: IEdge[]
+    nodes: INode[];
+    edges: IEdge[];
 };
