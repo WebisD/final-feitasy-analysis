@@ -1,12 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 /* Components */
 import Graph from "react-graph-vis";
 
-/* Styles */
-//import "./styles.css";
-//import "./react-graph-vis/styles/vis-network.min.css";
 
 const VizGraph: React.FC = () => {
 

@@ -10,7 +10,6 @@ const App: React.FC = () =>
 
   <DatabaseProvider>
 
-
       <Home/>
 
   </DatabaseProvider>
