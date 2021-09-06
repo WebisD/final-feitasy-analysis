@@ -1,16 +1,17 @@
 import React from 'react';
 
-// connection (neo4j) provider
+/* Connection (neo4j) provider */
 import DatabaseProvider from '../services/database/connection';
 
-// components
+/* Components */
 import Home from './pages/Home';
 
 const App: React.FC = () =>
 
   <DatabaseProvider>
 
-    <Home/>
+
+      <Home/>
 
   </DatabaseProvider>
 

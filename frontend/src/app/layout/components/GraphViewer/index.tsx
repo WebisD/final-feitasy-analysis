@@ -1,50 +1,20 @@
-import React from 'react';
-import { useReadCypher } from 'use-neo4j';
+import useLiveQueryable from '../../../hooks/useLiveQueryable';
 
-const reRenderTime = 1000;
 
-interface IState {
-    query: string;    
-};
+const GraphViewer: React.FC = () => {
 
-export default class GraphViewer extends React.Component {
 
-    state: IState = {
-        query:  `MATCH (n) RETURN n`
-    };
+    const data = useLiveQueryable();
 
-    componentDidMount(){
-        setInterval(this.loadData, reRenderTime);
-    };
+    return(
 
-    loadData = () => {
+        <div>
 
-        const { records, error } = useReadCypher(this.state.query);
+        </div>
 
-        let result;
+    )
 
-        if (error)
-            console.log(error);
-
-        else {
-            
-            let registers = records!.map( (r, idx) => {
-                console.log(`registro ${idx}`)
-            });
-
-            result = null; //colocar o resultado na viz aqui depois
-
-        } 
-    }
-
-    render() {
-        return(
-
-            <div>
-
-            </div>
-
-        )
-    };
 
 };
+
+export default GraphViewer;

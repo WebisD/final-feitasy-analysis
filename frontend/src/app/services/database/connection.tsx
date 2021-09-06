@@ -1,16 +1,12 @@
 import React from 'react';
-import { Neo4jProvider } from 'use-neo4j';
+import { Neo4jProvider, createDriver } from 'use-neo4j';
+
+export const driver = createDriver('neo4j', 'bolt://192.168.15.105:7687', 7687, 'neo4j', '123');
 
 const DatabaseProvider: typeof Neo4jProvider = ({children}) => 
 
-    <Neo4jProvider 
-          //scheme="neo4j+s"
-          host="bolt://192.168.15.105:7687"
-          port="7687"
-          username="neo4j"
-          password="123" 
-          database="QAFinalFeitasy1"
-    >
+    <Neo4jProvider driver={driver}>
+
       { children }
     
     </Neo4jProvider>
