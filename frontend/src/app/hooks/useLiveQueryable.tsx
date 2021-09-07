@@ -18,10 +18,15 @@ const useLiveQueryable = (
 
             const res = await session.run(query);
             
-            res.records.forEach(r => {
-                console.log(r);
-            });
-            
+            const mappedResult = 
+                res.records.map(record => record.map(collection => collection)).map(entity => ({
+                    node: entity[0],
+                    edge: entity[1],
+                    node_neighbor: entity[2] 
+                }));
+
+            console.log(mappedResult)
+
             setData(res);
         }
         catch(ex){
@@ -29,7 +34,6 @@ const useLiveQueryable = (
         }
         finally{
             session.close();
-            console.log("fim query")
         }
     
     };
