@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { driver } from '../services/database/connection';
 
 const useLiveQueryable = (
@@ -26,6 +26,11 @@ const useLiveQueryable = (
                 }));
 
             console.log(mappedResult)
+
+            mappedResult.forEach(r => {
+
+                console.log(typeof r.node)
+            })
 
             setData(res);
         }
