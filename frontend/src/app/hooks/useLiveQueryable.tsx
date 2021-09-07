@@ -19,18 +19,17 @@ const useLiveQueryable = (
             const res = await session.run(query);
             
             res.records.forEach(r => {
-                console.log(r);
+                console.log(r.get);
             });
             
             setData(res);
-
-            session.close();
         }
         catch(ex){
             console.log(ex);
         }
         finally{
             session.close();
+            console.log("fim query")
         }
     
     };
