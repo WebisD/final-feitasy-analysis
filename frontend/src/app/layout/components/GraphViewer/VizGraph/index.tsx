@@ -15,6 +15,8 @@ interface IProps {
 
 const VizGraph: React.FC<IProps> = ({ graph }) => {
 
+  useEffect(() => { applyQueryableLive() }, [])
+
   const options = {
     //layout: {
     // hierarchical: true
@@ -27,13 +29,12 @@ const VizGraph: React.FC<IProps> = ({ graph }) => {
 
   return (
     <Graph
-      graph={{ nodes: [...graph.nodes], edges: [...graph.edges]  }}
-      options={options}
+      graph={ graph }
+      options={ options }
     />
   );
 
 }
-
 
 const mapStateToProps = (state: AppState) => ({
   graph: graphSelector(state)
