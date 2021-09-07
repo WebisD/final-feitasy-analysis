@@ -9,8 +9,6 @@ export const driver = createDriver(
   Credentials.password
 );
 
-export const session = driver.session();
-
 const DatabaseProvider: typeof Neo4jProvider = ({children}) => 
 
     <Neo4jProvider driver={driver}>
