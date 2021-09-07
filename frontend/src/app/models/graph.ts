@@ -1,16 +1,19 @@
-type nodeId = number;
+import { integer } from "./queryResult";
 
 export interface INode {
-    id: nodeId;
+    id: string | number;
+    label: string;
+    [key: string]: any;
+};
+
+export interface IEdge{
+    id: number;
+    from: number;
+    to: number;
     label: string;
 };
 
-export interface IEdge {
-    start: nodeId;
-    end: nodeId;
-};
-
-export interface IGameGraph {
+export interface IGraph{
     nodes: INode[];
     edges: IEdge[];
 };

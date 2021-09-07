@@ -1,12 +1,21 @@
-import { useEffect, useState } from 'react';
+
+import React, { useCallback, useEffect, useState } from 'react';
+
+/* Connection */
 import { driver } from '../services/database/connection';
+
+/* Models */
+import { IEdgeResult, INodeResult } from '../models/queryResult';
+import { mapEdgeResultToVis, mapNodesResultToVis } from '../../utils/mappers';
+import { IEdge, IGraph, INode } from '../models/graph';
 
 const useLiveQueryable = (
     query = "MATCH (n)-[r]->(m) RETURN n,r,m", 
     reRenderTime = 1000
-) => {
+): IGraph => {
 
-    const [ data, setData ] = useState({});
+    const [ edges, setEdges ] = useState<IEdge[]>([]);
+    const [ nodes, setNodes ] = useState<INode[]>([]);
 
     useEffect(() => { setInterval(loadData, reRenderTime) }, []);
 
@@ -21,18 +30,25 @@ const useLiveQueryable = (
             const mappedResult = 
                 res.records.map(record => record.map(collection => collection)).map(entity => ({
                     node: entity[0],
-                    edge: entity[1],
-                    node_neighbor: entity[2] 
+                    relationship: entity[1],
+                    neighbor_node: entity[2] 
                 }));
 
-            console.log(mappedResult)
+            //console.log(mappedResult)
 
             mappedResult.forEach(r => {
+            
+                const node = r.node as INodeResult;
+                const neighbor = r.neighbor_node as INodeResult;
+                const edge = r.relationship as IEdgeResult;
 
-                console.log(typeof r.node)
-            })
+                setNodes([...nodes, ...mapNodesResultToVis([node, neighbor])]);
+                setEdges([...edges, mapEdgeResultToVis(edge)]);
+                
+            });
 
-            setData(res);
+            console.log(nodes, edges)
+
         }
         catch(ex){
             console.log(ex);
@@ -43,7 +59,7 @@ const useLiveQueryable = (
     
     };
 
-    return data;
+    return { nodes, edges };
 };
 
 export default useLiveQueryable;
