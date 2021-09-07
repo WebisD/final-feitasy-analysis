@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { driver } from '../services/database/connection';
 
 const useLiveQueryable = (
-    query = "MATCH (n) return n", 
+    query = "MATCH (n)-[r]->(m) RETURN n,r,m", 
     reRenderTime = 1000
 ) => {
 
