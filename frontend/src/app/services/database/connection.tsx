@@ -1,9 +1,15 @@
-import React from 'react';
 import { Neo4jProvider, createDriver } from 'use-neo4j';
+import { Credentials } from './credentials';
 
-export const driver = createDriver('neo4j', 'bolt://192.168.15.105:7687', 7687, 'neo4j', '123');
+export const driver = createDriver(
+  Credentials.scheme, 
+  Credentials.host, 
+  Credentials.port, 
+  Credentials.user, 
+  Credentials.password
+);
 
-export const session = driver.session({ database: 'QAFinalFeitasy1' });
+export const session = driver.session();
 
 const DatabaseProvider: typeof Neo4jProvider = ({children}) => 
 

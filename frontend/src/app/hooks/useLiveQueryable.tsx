@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { session } from '../services/database/connection';
+import { driver } from '../services/database/connection';
 
 const useLiveQueryable = (
     query = "MATCH (n) return n", 
@@ -12,7 +12,10 @@ const useLiveQueryable = (
 
     const loadData = async () => {
 
+        const session = driver.session();
+
         try {
+
             const res = await session.run(query);
             
             res.records.forEach(r => {
@@ -21,10 +24,13 @@ const useLiveQueryable = (
             
             setData(res);
 
-            //session.close();
+            session.close();
         }
         catch(ex){
             console.log(ex);
+        }
+        finally{
+            session.close();
         }
     
     };
