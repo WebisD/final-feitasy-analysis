@@ -19,7 +19,7 @@ const useLiveQueryable = (
             const res = await session.run(query);
             
             res.records.forEach(r => {
-                console.log(r.get);
+                console.log(r);
             });
             
             setData(res);
