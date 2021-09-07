@@ -9,7 +9,7 @@ export const mapNodesResultToVis = (nodes: INodeResult[]): INode[] => {
         const mappedProperties = mapNodePropertiesFields(node);
 
         return {
-            id: `${node.labels[0]} ${id}`,
+            id,
             label: `${node.labels[0]} ${id}`,
             ...mappedProperties
         };

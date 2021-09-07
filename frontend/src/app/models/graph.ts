@@ -16,4 +16,4 @@ export interface IEdge{
 export interface IGraph{
     nodes: INode[];
     edges: IEdge[];
-};
+}

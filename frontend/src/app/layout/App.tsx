@@ -1,17 +1,26 @@
 import React from 'react';
+import { Provider as ReduxProvider } from 'react-redux';
+
 
 /* Connection (neo4j) provider */
 import DatabaseProvider from '../services/database/connection';
+import store from '../store';
 
 /* Components */
 import Home from './pages/Home';
 
 const App: React.FC = () =>
 
-  <DatabaseProvider>
+  <ReduxProvider store={store}>
+
+    <DatabaseProvider>
 
       <Home/>
 
-  </DatabaseProvider>
+    </DatabaseProvider>
+
+  </ReduxProvider>
+
+
 
 export default App;

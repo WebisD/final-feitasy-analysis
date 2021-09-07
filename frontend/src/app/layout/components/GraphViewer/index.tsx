@@ -1,10 +1,8 @@
-import useLiveQueryable from '../../../hooks/useLiveQueryable';
+import useLiveQueryable from '../../../features/applyQueryableLive';
 
 
 const GraphViewer: React.FC = () => {
 
-
-    const data = useLiveQueryable();
 
     return(
 
