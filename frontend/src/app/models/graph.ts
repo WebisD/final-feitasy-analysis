@@ -1,5 +1,3 @@
-import { integer } from "./queryResult";
-
 export interface INode {
     id: string | number;
     label: string;

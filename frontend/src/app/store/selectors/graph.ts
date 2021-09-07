@@ -1,6 +1,7 @@
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { createSelector } from "reselect";
 
+/* Models */
 import { IGraph } from "../../models/graph";
 
 /* Application state */

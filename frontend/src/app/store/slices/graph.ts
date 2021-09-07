@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+/* Models */
 import { IEdge, INode } from '../../models/graph'
 
 export interface IGraphState{

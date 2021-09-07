@@ -1,6 +1,6 @@
 /* Models */
 import { IEdge, INode } from "../app/models/graph";
-import { IEdgeResult, INodeResult, integer } from "../app/models/queryResult";
+import { IEdgeResult, INodeResult } from "../app/models/queryResult";
 
 export const mapNodesResultToVis = (nodes: INodeResult[]): INode[] => {
     return nodes.map(node => {
@@ -34,7 +34,7 @@ const mapNodePropertiesFields = (node: INodeResult) => {
 
         mappedValue = typeof value !== 'string' ? value.low : value;
         
-        mappedProperties[key] = value;
+        mappedProperties[key] = mappedValue;
     
     });
 

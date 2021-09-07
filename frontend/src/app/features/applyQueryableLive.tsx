@@ -1,15 +1,17 @@
-
-import React, { useCallback, useEffect, useState } from 'react';
+import _ from 'lodash';
 
 /* Connection */
 import { driver } from '../services/database/connection';
 
 /* Models */
-import { IEdgeResult, INodeResult } from '../models/queryResult';
-import { mapEdgeResultToVis, mapNodesResultToVis } from '../../utils/mappers';
 import { IEdge, INode } from '../models/graph';
+import { IEdgeResult, INodeResult } from '../models/queryResult';
+
+/* Redux */
 import { setEdges, setNodes } from '../store/dispatches';
-import _ from 'lodash';
+
+/* Utils */
+import { mapEdgeResultToVis, mapNodesResultToVis } from '../../utils/mappers';
 
 
 const applyQueryableLive = (
@@ -26,13 +28,11 @@ const applyQueryableLive = (
             const res = await session.run(query);
             
             const mappedResult = 
-            res.records.map(record => record.map(collection => collection)).map(entity => ({
-                node: entity[0],
-                relationship: entity[1],
-                neighbor_node: entity[2] 
-            }));
-            
-            //console.log(mappedResult)
+                res.records.map(record => record.map(collection => collection)).map(entity => ({
+                    node: entity[0],
+                    relationship: entity[1],
+                    neighbor_node: entity[2] 
+                }));
             
             const nodesArr: INode[] = [];
             const edgesArr: IEdge[] = [];
@@ -51,14 +51,15 @@ const applyQueryableLive = (
             const mappedEdges = _.uniqBy([...edgesArr], 'id');
             const mappedNodes = _.uniqBy([...nodesArr], 'id');
 
-
             setEdges(mappedEdges);
             setNodes(mappedNodes);
             
         }
+
         catch(ex){
             console.log(ex);
         }
+        
         finally{
             session.close();
         }
