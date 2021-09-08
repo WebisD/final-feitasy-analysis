@@ -5,6 +5,8 @@ import GraphReducer from "../slices/graph";
 
 /* Models */
 import { IEdge, INode } from "../../models/graph";
+
+/* Selectors */
 import { nodesSelector } from "../selectors/graph";
 
 export const setNodes = (nodes: INode[]) => store.dispatch(GraphReducer.actions.setNodes(nodes));
