@@ -1,24 +1,48 @@
+import React from 'react';
 import { useEffect, useState } from "react";
 
-const DataTable = () => {
+/* Selectors */
+import { activeNodeSelector, useAppSelector } from '../../../store/selectors/graph';
+
+const DataTable: React.FC = () => {
+
+    const activeNode = useAppSelector(activeNodeSelector);
 
     return (
-        <>
-            <div className="table-responsive">
-                <table className="table table-striped table-sm">
-                    <thead>
-                        <tr>
-                            <th>Personagem</th>
-                            <th>Classe</th>
-                            <th>Item</th>
-                            <th>Inventário</th>
+
+        <div className="table-responsive">
+            
+            <table className="table table-striped table-xs table-dark" style={{width: '100%'}}>
+                
+                <thead>
+
+                    <tr>
+                        <th>Entity</th>
+                        <th>{ activeNode?.label || 'LABEL' }</th>
+                    </tr>
+
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Valor</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {Object.entries(activeNode || []).map(([ field, value ], id) =>
+                        <tr key={id}>
+                            <td>{field}</td>
+                            <td>{value}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-        </>
+                    )}
+                
+                </tbody>
+
+            </table>
+
+        </div>
+
     );
 }
 
