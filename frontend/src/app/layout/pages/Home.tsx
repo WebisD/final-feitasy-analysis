@@ -4,10 +4,10 @@ import React from 'react'
 import VizGraph from '../components/VizGraph';
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import DataTable from '../components/DataTable';
 
 /* Styles */
 import './Home.css';
-import DataTable from '../components/DataTable';
 
 const Home: React.FC = () => {
 
