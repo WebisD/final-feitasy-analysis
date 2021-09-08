@@ -18,4 +18,6 @@ export const graphSelector = createSelector(
     }
 );
 
-export const useSelectorApp : TypedUseSelectorHook<AppState> = useSelector;
+export const activeNodeSelector = (state: AppState) => state.graph.activeNode;
+
+export const useAppSelector : TypedUseSelectorHook<AppState> = useSelector;

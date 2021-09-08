@@ -11,7 +11,7 @@ import { IEdgeResult, INodeResult } from '../models/queryResult';
 import { setEdges, setNodes } from '../store/dispatches';
 
 /* Utils */
-import { mapEdgeResultToVis, mapNodesResultToVis } from '../../utils/mappers';
+import { mapEdgeResultToVis, mapNodesResultToVis } from '../utils/mappers';
 
 
 const applyQueryableLive = (

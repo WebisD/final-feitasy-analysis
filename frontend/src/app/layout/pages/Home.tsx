@@ -7,17 +7,19 @@ import NavBar from "../components/NavBar";
 
 /* Styles */
 import './Home.css';
+import DataTable from '../components/DataTable';
 
 const Home: React.FC = () => {
-
-    const [ activeTab, setActiveTab ] = useState<"AboutUs" | "ViewGraph">("ViewGraph");
 
     return (
         <>
             <NavBar/>
-            <div>
-                { activeTab === "ViewGraph" && <VizGraph/> }
-             </div>
+
+            <div className="main-content-container">
+                <VizGraph/>
+                <DataTable/>
+            </div>
+
             <Footer />
         </>
     );

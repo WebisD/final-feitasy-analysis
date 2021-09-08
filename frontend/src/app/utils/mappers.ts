@@ -1,6 +1,6 @@
 /* Models */
-import { IEdge, INode } from "../app/models/graph";
-import { IEdgeResult, INodeResult } from "../app/models/queryResult";
+import { IEdge, INode } from "../models/graph";
+import { IEdgeResult, INodeResult } from "../models/queryResult";
 
 export const mapNodesResultToVis = (nodes: INodeResult[]): INode[] => {
     return nodes.map(node => {
