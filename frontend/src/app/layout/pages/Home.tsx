@@ -13,7 +13,7 @@ const Home: React.FC = () => {
     return (
 
         <div className="app-home">
-
+            
             { activeTab === "ViewGraph" && <VizGraph/> }
 
         </div>

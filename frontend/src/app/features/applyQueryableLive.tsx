@@ -48,8 +48,8 @@ const applyQueryableLive = (
                 
             });
             
-            const mappedEdges = _.uniqBy([...edgesArr], 'id');
-            const mappedNodes = _.uniqBy([...nodesArr], 'id');
+            const mappedEdges = _.uniqBy(edgesArr, 'id');
+            const mappedNodes = _.uniqBy(nodesArr, 'id');
 
             setEdges(mappedEdges);
             setNodes(mappedNodes);
