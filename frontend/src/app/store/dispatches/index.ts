@@ -1,7 +1,7 @@
-import store, { AppState, AppDispatch } from "..";
+import store from "..";
 
 /* App Actions */
-import GraphReducer, { AppActions } from "../slices/graph";
+import GraphReducer from "../slices/graph";
 
 /* Models */
 import { IEdge, INode } from "../../models/graph";

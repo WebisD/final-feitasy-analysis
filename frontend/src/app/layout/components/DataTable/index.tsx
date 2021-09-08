@@ -1,5 +1,4 @@
 import React from 'react';
-import { useEffect, useState } from "react";
 
 /* Selectors */
 import { activeNodeSelector, useAppSelector } from '../../../store/selectors/graph';

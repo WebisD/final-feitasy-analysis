@@ -1,7 +1,13 @@
 import ReactDOM from 'react-dom';
 import App from './app/layout/App';
+
+/* Global Styles */
+import './index.css';
+
+/* Boostrap Styles */
 import 'bootstrap/dist/css/bootstrap.css';
 import './app/assets/css/styles.css';
+
 
 ReactDOM.render(
     <App />,
