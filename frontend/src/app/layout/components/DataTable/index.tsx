@@ -16,7 +16,7 @@ const DataTable: React.FC = () => {
                 <thead>
 
                     <tr>
-                        <th>Entity</th>
+                        <th>Entidade</th>
                         <th>{ activeNode?.label || 'LABEL' }</th>
                     </tr>
 
