@@ -9,7 +9,7 @@ import { IGraph } from "../../../models/graph";
 
 /* Selectors | Actions */
 import { graphSelector } from "../../../store/selectors/graph";
-import { AppDispatch, AppState } from "../../../store";
+import { AppState } from "../../../store";
 import { setSelectedNode } from "../../../store/dispatches";
 
 /* Query handler */
@@ -18,6 +18,7 @@ import applyQueryableLive from "../../../features/applyQueryableLive";
 /* Styles */ 
 import "./styles/styles.css";
 import "./styles/network.css"; // need to import the vis network css in order to show tooltip
+import options from "./styles/options/graphOptions";
 
 interface IProps {
   graph: IGraph;
@@ -27,14 +28,6 @@ interface IProps {
 const VizGraph: React.FC<IProps> = ({ graph, setSelectedNode }) => {
 
   useEffect(() => { applyQueryableLive() }, [])
-
-  const options = {
-
-    edges: {
-      color: "#000000"
-    },
-
-  };
 
   const events = {
     select: function(event: any) {
@@ -60,7 +53,7 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
+const mapDispatchToProps = () => ({
   setSelectedNode: (nodeId:number) => setSelectedNode(nodeId)
 });
 

@@ -29,11 +29,14 @@ const DataTable: React.FC = () => {
 
                 <tbody>
 
-                    {Object.entries(activeNode || []).map(([ field, value ], id) =>
-                        <tr key={id}>
-                            <td>{field}</td>
-                            <td>{value}</td>
-                        </tr>
+                    {Object.entries(activeNode || {}).map(([ field, value ], id) =>
+
+                        field !== "id" && field !== "label" ?
+                            <tr key={id}>
+                                <td>{field}</td>
+                                <td>{value}</td>
+                            </tr>
+                        : React.Fragment
                     )}
                 
                 </tbody>
