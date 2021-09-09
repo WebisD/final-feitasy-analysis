@@ -1,12 +1,12 @@
 import { Neo4jProvider, createDriver } from 'use-neo4j';
-import { Credentials } from './credentials';
+import { NEO4J_HOST, NEO4J_PASSWORD, NEO4J_PORT, NEO4J_USER } from '../../utils/requests';
 
 export const driver = createDriver(
-  Credentials.scheme, 
-  Credentials.host, 
-  Credentials.port, 
-  Credentials.user, 
-  Credentials.password
+  'neo4j+s', 
+  NEO4J_HOST, 
+  NEO4J_PORT, 
+  NEO4J_USER, 
+  NEO4J_PASSWORD
 );
 
 const DatabaseProvider: typeof Neo4jProvider = ({children}) => 
