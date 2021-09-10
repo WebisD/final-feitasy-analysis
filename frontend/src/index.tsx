@@ -6,8 +6,6 @@ import './index.css';
 
 /* Boostrap Styles */
 import 'bootstrap/dist/css/bootstrap.css';
-import './app/assets/css/styles.css';
-
 
 ReactDOM.render(
     <App />,
