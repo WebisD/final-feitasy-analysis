@@ -33,6 +33,8 @@ const mapNodePropertiesFields = (node: INodeResult) => {
         let mappedValue: number | string;
 
         mappedValue = typeof value !== 'string' ? value.low : value;
+
+        console.log("TESTE: " + process.env)
         
         mappedProperties[key] = mappedValue;
     
