@@ -1,5 +1,5 @@
-import env from '../../configurations/env';
-import { Neo4jScheme } from 'use-neo4j/dist/neo4j-config.interface';
+import env from '../../configurations/env'; /* Environment variables */
+import { Neo4jScheme } from 'use-neo4j/dist/neo4j-config.interface'; /* Neo4j scheme type */
 
 const Credentials = {
     scheme: env.NEO4J_SCHEME! as Neo4jScheme,
