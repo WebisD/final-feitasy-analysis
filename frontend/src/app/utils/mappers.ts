@@ -10,7 +10,7 @@ export const mapNodesResultToVis = (nodes: INodeResult[]): INode[] => {
 
         return {
             id,
-            label: `${node.labels[0]} ${id}`,
+            label: `${node.labels[0]} ${mappedProperties['id_pk']}`,
             ...mappedProperties
         };
     });
