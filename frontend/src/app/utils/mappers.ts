@@ -10,7 +10,7 @@ export const mapNodesResultToVis = (nodes: INodeResult[]): INode[] => {
 
         return {
             id,
-            label: `${node.labels[0]} ${mappedProperties['id_pk']}`,
+            label: mappedProperties.caption,
             ...mappedProperties
         };
     });
@@ -26,6 +26,8 @@ export const mapEdgeResultToVis = (edge: IEdgeResult): IEdge => ({
 const mapNodePropertiesFields = (node: INodeResult) => {
 
     const mappedProperties: any = {};
+
+    mappedProperties["entity"] = node.labels[0];
     
     Object.entries(node.properties).forEach(p => {
 
