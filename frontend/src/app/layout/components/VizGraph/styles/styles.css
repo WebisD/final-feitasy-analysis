@@ -1,3 +1,7 @@
-#data-visualizer, #data-visualizer div {
-    height: 70vh;
+#data-visualizer{
+    height: 100%;
+}
+
+#data-visualizer div, #data-visualizer canvas  {
+    max-height: 100%;
 }

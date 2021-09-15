@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^1.6.7",
+    "@chakra-ui/switch": "^1.2.9",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -15,7 +17,9 @@
     "@types/react-redux": "^7.1.18",
     "@types/redux": "^3.6.0",
     "bootstrap": "^5.1.1",
+    "i": "^0.3.6",
     "lodash": "^4.17.21",
+    "npm": "^7.23.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-graph-vis": "^1.0.7",

@@ -1,14 +1,9 @@
-.app-home{
-    height: 100%;
-    overflow-x: hidden;
-}
-
 .main-content-container{
-    display: flex;
+    position: relative;
+    height: 80vh;
 }
 
 .main-content-container .table-responsive{
-    font-size: 10px;
+    
     max-width: 20%;
-    margin-left: 1em;
 }

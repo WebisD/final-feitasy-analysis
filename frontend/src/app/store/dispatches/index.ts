@@ -13,6 +13,9 @@ export const setNodes = (nodes: INode[]) => store.dispatch(GraphReducer.actions.
 
 export const setEdges = (edges: IEdge[]) => store.dispatch(GraphReducer.actions.setEdges(edges));
 
+export const setDataTableVisible = (isVisible: boolean) => 
+    store.dispatch(GraphReducer.actions.setInfoTableVisible(isVisible));
+
 export const setSelectedNode = (nodeId: number) => {
 
     const state = store.getState();

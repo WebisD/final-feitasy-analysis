@@ -1,17 +1,22 @@
 import React from 'react';
 
+/* Styles */
+import './styles.css';
+
 /* Selectors */
-import { activeNodeSelector, useAppSelector } from '../../../store/selectors/graph';
+import { activeNodeSelector, isDataTableVisibleSelector, useAppSelector } from '../../../store/selectors/graph';
 
 const DataTable: React.FC = () => {
 
     const activeNode = useAppSelector(activeNodeSelector);
 
+    const isDataTableVisible = useAppSelector(isDataTableVisibleSelector);
+
     return (
 
-        <div className="table-responsive">
+        <div className={`data-table table-responsive m-0 ${isDataTableVisible ? 'd-block' : 'd-none'}`}>
             
-            <table className="table table-striped table-xs table-dark" style={{width: '100%'}}>
+            <table className="table table-striped table-xs table-dark m-0 w-100">
                 
                 <thead>
 

@@ -7,12 +7,14 @@ export interface IGraphState{
     nodes: INode[];
     edges: IEdge[];
     activeNode: INode | undefined;
+    showInfoTable: boolean;
 };
 
 const initialState: IGraphState = {
     nodes: [],
     edges: [],
-    activeNode: undefined
+    activeNode: undefined,
+    showInfoTable: true
 };
 
 const GraphReducer = createSlice({
@@ -27,6 +29,9 @@ const GraphReducer = createSlice({
     },
     setActiveNode(state, action: PayloadAction<INode>){
       state.activeNode = action.payload;
+    },
+    setInfoTableVisible(state, action: PayloadAction<boolean>){
+      state.showInfoTable = action.payload;
     }
   },
 });
