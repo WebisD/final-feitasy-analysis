@@ -5,6 +5,7 @@
   "dependencies": {
     "@chakra-ui/react": "^1.6.7",
     "@chakra-ui/switch": "^1.2.9",
+    "@emotion/react": "^11.4.1",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

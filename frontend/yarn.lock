@@ -1830,7 +1830,7 @@
   "resolved" "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.4.tgz"
   "version" "0.7.4"
 
-"@emotion/react@^11.0.0", "@emotion/react@^11.0.0-rc.0", "@emotion/react@>=10.0.35":
+"@emotion/react@^11.0.0", "@emotion/react@^11.0.0-rc.0", "@emotion/react@^11.4.1", "@emotion/react@>=10.0.35":
   "integrity" "sha512-pRegcsuGYj4FCdZN6j5vqCALkNytdrKw3TZMekTzNXixRg4wkLsU5QEaBG5LC6l01Vppxlp7FE3aTHpIG5phLg=="
   "resolved" "https://registry.npmjs.org/@emotion/react/-/react-11.4.1.tgz"
   "version" "11.4.1"
