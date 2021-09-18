@@ -1,1 +1,1 @@
-## Application Dashboard
+## Graph Application Dashboard
