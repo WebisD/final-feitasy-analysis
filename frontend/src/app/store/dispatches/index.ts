@@ -27,7 +27,7 @@ export const setSelectedNode = (nodeId: number) => {
 export const setSelectedEdge = (edgeId: number) => {
     const edges = edgesSelector(store.getState());
 
-    const selectedNode = edges.find(n => n.id === edgeId);
+    const selectedEdge = edges.find(n => n.id === edgeId);
 
-    store.dispatch(GraphReducer.actions.setActiveEntity(selectedNode!));
+    store.dispatch(GraphReducer.actions.setActiveEntity(selectedEdge!));
 }
