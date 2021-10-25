@@ -17,7 +17,6 @@ import applyTimedQuery from "../../../features/applyTimedQuery";
 
 /* Styles */ 
 import "./styles/styles.css";
-import "./styles/network.css"; // need to import the vis network css in order to show tooltip
 import options from "./styles/options/graphOptions";
 
 interface IProps {
