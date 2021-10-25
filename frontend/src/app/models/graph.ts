@@ -9,6 +9,7 @@ export interface IEdge{
     from: number;
     to: number;
     label: string;
+    [key: string]: any;
 };
 
 export interface IGraph{

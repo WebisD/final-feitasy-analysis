@@ -13,4 +13,7 @@ export interface IEdgeResult {
     type: string;
     start: integer;
     end: integer;
+    properties: {
+        [key: string] : integer | string
+    };
 };

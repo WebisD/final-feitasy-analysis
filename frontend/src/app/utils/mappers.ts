@@ -4,12 +4,11 @@ import { IEdgeResult, INodeResult } from "../models/queryResult";
 
 export const mapNodesResultToVis = (nodes: INodeResult[]): INode[] => {
     return nodes.map(node => {
-
-        const id = node.identity.low;
-        const mappedProperties = mapNodePropertiesFields(node);
+        const mappedProperties = mapEntityPropertiesFields(node);
+        mappedProperties["entity"] = node.labels[0];
 
         return {
-            id,
+            id: node.identity.low,
             label: mappedProperties.caption,
             ...mappedProperties
         };
@@ -20,16 +19,15 @@ export const mapEdgeResultToVis = (edge: IEdgeResult): IEdge => ({
     id: edge.identity.low,
     label: edge.type,
     from: edge.start.low,
-    to: edge.end.low
+    to: edge.end.low,
+    ...mapEntityPropertiesFields(edge)
 });
 
-const mapNodePropertiesFields = (node: INodeResult) => {
+const mapEntityPropertiesFields = (entity: INodeResult | IEdgeResult) => {
 
     const mappedProperties: any = {};
 
-    mappedProperties["entity"] = node.labels[0];
-    
-    Object.entries(node.properties).forEach(p => {
+    Object.entries(entity.properties).forEach(p => {
 
         let [key, value] = p;
         let mappedValue: number | string;

@@ -20,6 +20,6 @@ export const graphSelector = createSelector(
     }
 );
 
-export const activeNodeSelector = (state: AppState) => state.graph.activeNode;
+export const activeEntitySelector = (state: AppState) => state.graph.activeEntity;
 
 export const useAppSelector : TypedUseSelectorHook<AppState> = useSelector;

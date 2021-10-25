@@ -10,10 +10,10 @@ import { IGraph } from "../../../models/graph";
 /* Selectors | Actions */
 import { graphSelector } from "../../../store/selectors/graph";
 import { AppState } from "../../../store";
-import { setSelectedNode } from "../../../store/dispatches";
+import { setSelectedNode, setSelectedEdge } from "../../../store/dispatches";
 
 /* Query handler */
-import applyQueryableLive from "../../../features/applyQueryableLive";
+import applyTimedQuery from "../../../features/applyTimedQuery";
 
 /* Styles */ 
 import "./styles/styles.css";
@@ -23,16 +23,23 @@ import options from "./styles/options/graphOptions";
 interface IProps {
   graph: IGraph;
   setSelectedNode: (nodeId: number) => void;
+  setSelectedEdge: (edgeId: number) => void;
 };
 
 const VizGraph: React.FC<IProps> = ({ graph, setSelectedNode }) => {
 
-  useEffect(() => { applyQueryableLive() }, [])
+  useEffect(() => { applyTimedQuery() }, [])
 
   const events = {
-    select: function(event: any) {
-      const { nodes } = event;
-      setSelectedNode(nodes[0]);
+    select: (event: any) => {
+      const { nodes, edges } = event;
+      
+      const [hasSelectedNode, hasSelectedEdge] = [!!nodes[0], !!edges[0]];
+
+      if (hasSelectedEdge && !hasSelectedNode)
+        setSelectedEdge(edges[0]);
+      else 
+        setSelectedNode(nodes[0]);
     }
   };
 
@@ -54,7 +61,8 @@ const mapStateToProps = (state: AppState) => ({
 
 
 const mapDispatchToProps = () => ({
-  setSelectedNode: (nodeId:number) => setSelectedNode(nodeId)
+  setSelectedNode: (nodeId:number) => setSelectedNode(nodeId),
+  setSelectedEdge: (edgeId:number) => setSelectedEdge(edgeId)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(VizGraph);

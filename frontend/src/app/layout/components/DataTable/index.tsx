@@ -4,11 +4,11 @@ import React from 'react';
 import './styles.css';
 
 /* Selectors */
-import { activeNodeSelector, isDataTableVisibleSelector, useAppSelector } from '../../../store/selectors/graph';
+import { activeEntitySelector, isDataTableVisibleSelector, useAppSelector } from '../../../store/selectors/graph';
 
 const DataTable: React.FC = () => {
 
-    const activeNode = useAppSelector(activeNodeSelector);
+    const activeEntity = useAppSelector(activeEntitySelector);
 
     const isDataTableVisible = useAppSelector(isDataTableVisibleSelector);
 
@@ -22,7 +22,7 @@ const DataTable: React.FC = () => {
 
                     <tr>
                         <th>Entidade</th>
-                        <th>{ activeNode?.label || 'LABEL' }</th>
+                        <th>{ activeEntity?.label || 'LABEL' }</th>
                     </tr>
 
                     <tr>
@@ -34,9 +34,11 @@ const DataTable: React.FC = () => {
 
                 <tbody>
 
-                    {Object.entries(activeNode || {}).map(([ field, value ], id) =>
+                    {Object.entries(activeEntity || {}).map(([ field, value ], id) =>
 
-                        field !== "id" && field !== "label" ?
+                        field !== "id" && field !== "label" 
+                        //&& field !== "to" && field !== "from"
+                        ?
                             <tr key={id}>
                                 <td>{field}</td>
                                 <td>{value}</td>

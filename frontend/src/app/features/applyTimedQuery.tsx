@@ -14,7 +14,7 @@ import { setEdges, setNodes } from '../store/dispatches';
 import { mapEdgeResultToVis, mapNodesResultToVis } from '../utils/mappers';
 
 
-const applyQueryableLive = (
+const applyTimedQuery = (
     query = "MATCH (n)-[r]->(m) RETURN n,r,m", 
     reRenderTime = 1000
 ) => {
@@ -70,4 +70,4 @@ const applyQueryableLive = (
 
 };
 
-export default applyQueryableLive;
+export default applyTimedQuery;

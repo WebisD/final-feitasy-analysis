@@ -6,14 +6,14 @@ import { IEdge, INode } from '../../models/graph'
 export interface IGraphState{
     nodes: INode[];
     edges: IEdge[];
-    activeNode: INode | undefined;
+    activeEntity: INode | IEdge | undefined;
     showInfoTable: boolean;
 };
 
 const initialState: IGraphState = {
     nodes: [],
     edges: [],
-    activeNode: undefined,
+    activeEntity: undefined,
     showInfoTable: true
 };
 
@@ -27,8 +27,8 @@ const GraphReducer = createSlice({
     setEdges(state, action: PayloadAction<IEdge[]>){
       state.edges = action.payload;
     },
-    setActiveNode(state, action: PayloadAction<INode>){
-      state.activeNode = action.payload;
+    setActiveEntity(state, action: PayloadAction<INode | IEdge>){
+      state.activeEntity = action.payload;
     },
     setInfoTableVisible(state, action: PayloadAction<boolean>){
       state.showInfoTable = action.payload;
