@@ -25,7 +25,7 @@ interface IProps {
   setSelectedEdge: (edgeId: number) => void;
 };
 
-const VizGraph: React.FC<IProps> = ({ graph, setSelectedNode }) => {
+const VizGraph: React.FC<IProps> = ({ graph, setSelectedNode, setSelectedEdge }) => {
 
   useEffect(() => { applyTimedQuery() }, [])
 
