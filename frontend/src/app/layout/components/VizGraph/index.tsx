@@ -35,10 +35,12 @@ const VizGraph: React.FC<IProps> = ({ graph, setSelectedNode, setSelectedEdge })
       
       const [hasSelectedNode, hasSelectedEdge] = [!!nodes[0], !!edges[0]];
 
-      if (hasSelectedEdge && !hasSelectedNode)
-        setSelectedEdge(edges[0]);
-      else 
-        setSelectedNode(nodes[0]);
+      if (hasSelectedNode || hasSelectedEdge){
+        if (hasSelectedEdge && !hasSelectedNode)
+          setSelectedEdge(edges[0]);
+        else
+          setSelectedNode(nodes[0]);
+      }
     }
   };
 
