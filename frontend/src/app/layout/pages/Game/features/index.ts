@@ -18,19 +18,21 @@ const initializeCanvas = () => {
 }
 
 const draw = () => {
-    const world = new World();
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    /* DESENHOS AQUI */
+ 
+    const world = new World();
     world.draw();
 }
 
 const render = () => {
     draw();
+    animationFrameId = window.requestAnimationFrame(render)
 } 
 
 export const run = () => {
     initializeCanvas();
-    animationFrameId = window.requestAnimationFrame(render);
 
     render();
 }
