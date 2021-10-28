@@ -1,11 +1,11 @@
-import IDrawable from "../Common/IDrawable"
-import {getCanvasRef} from "../References"
+import IDrawable from "../../common/IDrawable"
+import { getCanvasRef } from "../../utils/references"
 
 export default class World implements IDrawable {
     private floorSize: number[] = [2000, 5] 
 
-    draw(frameCount: number) {
-        const canvas = getCanvasRef()
+    draw() {
+        const canvas = getCanvasRef().canvasReference;
         const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
         ctx.fillStyle = '#000000'
 

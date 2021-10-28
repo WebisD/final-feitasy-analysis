@@ -9,12 +9,17 @@ import ImgDS from '../../../assets/img/icon.svg';
 import ImgDsTitle from '../../../assets/img/title.svg';
 
 /* Selectors | Actions*/
-import { setDataTableVisible } from '../../../store/dispatches';
-import { isDataTableVisibleSelector, useAppSelector } from '../../../store/selectors/graph';
+import { setDataTableVisible, setIsPlaying } from '../../../store/dispatches';
+import { isDataTableVisibleSelector, isPlayingSelector, useAppSelector } from '../../../store/selectors/graph';
+import { useHistory } from 'react-router';
 
 const NavBar: React.FC = () => {
 
   const isDataTableVisible = useAppSelector(isDataTableVisibleSelector);
+
+  const history = useHistory();
+
+  const isPlaying = useAppSelector(isPlayingSelector);
 
   return (
 
@@ -31,14 +36,20 @@ const NavBar: React.FC = () => {
               <img src={ImgDsTitle} alt="Titulo" width="50" />
             </span>
 
-            <span className="navbar-data-table-togglerd-flex align-items-center" >
+            <span 
+              className="btn btn-primary play-game-btn" 
+              onClick={() => setIsPlaying(!isPlaying)}>
+                {isPlaying ? "Dashboard" : "Jogar"}
+            </span>
+
+            {isPlaying && <span className="navbar-data-table-togglerd-flex align-items-center" >
                 <label htmlFor="showData" className="text-light p-1">Exibir dados </label>
                 <Switch 
                   id="showData" 
                   isChecked={isDataTableVisible}
                   onChange={() => setDataTableVisible(!isDataTableVisible)} 
                 />
-            </span>
+            </span>}
             
           </nav>
 
