@@ -5,7 +5,7 @@ let canvas: HTMLCanvasElement;
 let animationFrameId: number;
 let ctx: CanvasRenderingContext2D;
 
-export const initializeCanvas = () => {
+const initializeCanvas = () => {
     canvas = getCanvasRef().canvasReference;
     animationFrameId = getCanvasRef().animationFrameId;
 
