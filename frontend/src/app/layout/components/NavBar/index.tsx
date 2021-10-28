@@ -42,7 +42,7 @@ const NavBar: React.FC = () => {
                 {isPlaying ? "Dashboard" : "Jogar"}
             </span>
 
-            {isPlaying && <span className="navbar-data-table-togglerd-flex align-items-center" >
+            {!isPlaying && <span className="navbar-data-table-togglerd-flex align-items-center" >
                 <label htmlFor="showData" className="text-light p-1">Exibir dados </label>
                 <Switch 
                   id="showData" 
