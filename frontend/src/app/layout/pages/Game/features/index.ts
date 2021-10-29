@@ -12,14 +12,14 @@ const character = new Character();
 
 
 const initializeCanvas = () => {
-    canvas = getCanvasRef();
+    canvas = getCanvasRef().canvas;
 
     // Set sizes
     canvas.width = window.innerWidth;
     canvas.height = 0.8 * window.innerHeight;
 
     // Set 2D context
-    ctx = canvas.getContext('2d')!;
+    ctx = getCanvasRef().ctx;
 }
 
 const draw = () => {

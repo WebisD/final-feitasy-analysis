@@ -1,7 +1,12 @@
-let canvas: HTMLCanvasElement | null = null
+type AnimatedCanvas = {
+    canvas: HTMLCanvasElement,
+    ctx: CanvasRenderingContext2D
+};
 
-export const setCanvasRef = (canvasRef: HTMLCanvasElement) => {
+let canvas: AnimatedCanvas;
+
+export const setCanvasRef = (canvasRef: AnimatedCanvas) => {
     canvas = canvasRef;
-}
+};
 
-export const getCanvasRef = () => canvas!
+export const getCanvasRef = () => canvas;

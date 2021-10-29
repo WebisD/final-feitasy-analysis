@@ -2,42 +2,44 @@ import IDrawable from "../../common/IDrawable"
 import { getCanvasRef } from "../../utils/references"
 
 export default class Character implements IDrawable {
-    public width: number = 30
-    public height: number = 30
-    public color: string = "red"
-    public x: number = 100
-    public y: number = 100
-    public speed: number = 10
+    private width: number = 30
+    private height: number = 30
+    private color: string = "red"
+    private x: number = 100
+    private y: number = 100
+    private speed: number = 10
     
     constructor () {
         window.addEventListener("keydown", this.move, false);
     }
 
+    public draw = () => {
+        const { ctx } = getCanvasRef();
 
-    draw = () => {
-        const canvas = getCanvasRef();
-        const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
-          
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
-        
     };
 
-    move = (e:KeyboardEvent) => {
-        if(e.key === 'a') { 
-            this.x -= this.speed;
-        }
-        if(e.key === 'd') {
-            this.x += this.speed;	
-        }
-        
-    }  
+    private move = (e:KeyboardEvent) => {
+        switch(e.key.toUpperCase()){
+            case 'A': 
+                this.x -= this.speed;
+                break;
+
+            case 'D':
+                this.x += this.speed;	
+                break;
+        }  
+    }
 }
 
 /*type x = "abc" | "def"
 const y:x = "abc"
 export const x = 5
 
+// atributos/métodos públicos em uma classe podem ser omitidos (o typescript infere que são públicos)
+        public width: number = 30
+        width: number = 30
 
 function func(a?:number, b?:string): number {
     return 5
