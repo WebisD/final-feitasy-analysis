@@ -11,13 +11,10 @@ import ImgDsTitle from '../../../assets/img/title.svg';
 /* Selectors | Actions*/
 import { setDataTableVisible, setIsPlaying } from '../../../store/dispatches';
 import { isDataTableVisibleSelector, isPlayingSelector, useAppSelector } from '../../../store/selectors/graph';
-import { useHistory } from 'react-router';
 
 const NavBar: React.FC = () => {
 
   const isDataTableVisible = useAppSelector(isDataTableVisibleSelector);
-
-  const history = useHistory();
 
   const isPlaying = useAppSelector(isPlayingSelector);
 

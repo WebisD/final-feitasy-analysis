@@ -1,6 +1,5 @@
 import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 
 /* Connection (neo4j) provider */
 import DatabaseProvider from '../services/database/connection';

@@ -1,11 +1,6 @@
-interface IAnimatedCanvas {
-    canvasReference: HTMLCanvasElement;
-    animationFrameId: number;
-};
+let canvas: HTMLCanvasElement | null = null
 
-let canvas: IAnimatedCanvas | null = null
-
-export const setCanvasRef = (canvasRef: IAnimatedCanvas) => {
+export const setCanvasRef = (canvasRef: HTMLCanvasElement) => {
     canvas = canvasRef;
 }
 

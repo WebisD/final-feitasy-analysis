@@ -1,13 +1,18 @@
 import World from "../models/world/world";
 import { getCanvasRef } from "../utils/references"
+import Character from "../models/character/character"
 
 let canvas: HTMLCanvasElement;
-let animationFrameId: number;
 let ctx: CanvasRenderingContext2D;
 
+
+const world = new World();
+const character = new Character();
+//let enemies:Character[] = [new Character()];
+
+
 const initializeCanvas = () => {
-    canvas = getCanvasRef().canvasReference;
-    animationFrameId = getCanvasRef().animationFrameId;
+    canvas = getCanvasRef();
 
     // Set sizes
     canvas.width = window.innerWidth;
@@ -21,22 +26,19 @@ const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     /* DESENHOS AQUI */
- 
-    const world = new World();
+    
     world.draw();
+    character.draw();
+    
 }
 
 const render = () => {
     draw();
-    animationFrameId = window.requestAnimationFrame(render)
+    window.requestAnimationFrame(render)
 } 
 
 export const run = () => {
     initializeCanvas();
 
     render();
-}
-
-export const unmountCanvas = () => {
-    window.cancelAnimationFrame(animationFrameId);
 }

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { run, unmountCanvas } from '../features';
+import { run } from '../features';
 import { setCanvasRef } from '../utils/references';
 
 const Canvas: React.FC = () => {
@@ -7,10 +7,7 @@ const Canvas: React.FC = () => {
     
     useEffect(() => {
 
-      setCanvasRef({
-        canvasReference: canvasRef.current!,
-        animationFrameId: 0
-      });
+      setCanvasRef(canvasRef.current!);
       
       run();
       

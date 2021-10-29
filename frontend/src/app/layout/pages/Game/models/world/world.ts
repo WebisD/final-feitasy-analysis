@@ -5,7 +5,7 @@ export default class World implements IDrawable {
     private floorSize: number[] = [2000, 5] 
 
     draw() {
-        const canvas = getCanvasRef().canvasReference;
+        const canvas = getCanvasRef();
         const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
         ctx.fillStyle = '#000000'
 

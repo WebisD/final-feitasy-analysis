@@ -2,7 +2,6 @@ import React from 'react'
 
 /* Components */
 import VizGraph from '../../components/VizGraph';
-import Footer from "../../components/Footer";
 import DataTable from '../../components/DataTable';
 
 /* Styles */
