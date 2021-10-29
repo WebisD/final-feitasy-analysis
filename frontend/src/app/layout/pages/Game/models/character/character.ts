@@ -2,15 +2,19 @@ import IDrawable from "../../common/IDrawable"
 import { getCanvasRef } from "../../utils/references"
 
 export default class Character implements IDrawable {
-
-    private width: number = 30
-    private height: number = 30
-    private color: string = "red"
-    private x: number = 100
-    private y: number = 100
+    public width: number = 30
+    public height: number = 30
+    public color: string = "red"
+    public x: number = 100
+    public y: number = 100
+    public speed: number = 10
     
+    constructor () {
+        window.addEventListener("keydown", this.move, false);
+    }
 
-    draw(){
+
+    draw = () => {
         const canvas = getCanvasRef();
         const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
           
@@ -18,12 +22,24 @@ export default class Character implements IDrawable {
         ctx.fillRect(this.x, this.y, this.width, this.height);
         
     };
+
+    move = (e:KeyboardEvent) => {
+        if(e.key === 'a') { 
+            this.x -= this.speed;
+        }
+        if(e.key === 'd') {
+            this.x += this.speed;	
+        }
+        
+    }  
 }
 
+/*type x = "abc" | "def"
+const y:x = "abc"
 export const x = 5
 
 
-/*function func(a?:number, b?:string): number {
+function func(a?:number, b?:string): number {
     return 5
 }
 

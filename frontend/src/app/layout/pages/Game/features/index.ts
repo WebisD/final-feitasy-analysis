@@ -26,7 +26,6 @@ const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     /* DESENHOS AQUI */
-    
     world.draw();
     character.draw();
     
