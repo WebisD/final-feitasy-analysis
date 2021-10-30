@@ -1,4 +1,3 @@
-import { driver } from "../../../../../services/database/connection"
 import IDrawable from "../../common/IDrawable"
 import { getCanvasRef } from "../../utils/references"
 
@@ -25,7 +24,6 @@ export default class Character implements IDrawable {
         switch(e.key.toUpperCase()){
             case 'A': 
                 this.x -= this.speed;
-                this.readTransactionOnMove()
                 break;
 
             case 'D':
@@ -34,21 +32,6 @@ export default class Character implements IDrawable {
         }  
     }
 
-    private readTransactionOnMove = async () => {
-        const session = driver.session(); 
-        
-        const readTxResultPromise = await session.readTransaction<number>(async txc => {
-            const result = await txc.run(
-              `MATCH (n)-[r]->(m) RETURN n,r,m`
-            )
-            
-            console.log(result)
-
-            return 5;
-        })
-
-        session.close()
-    }
 }
 
 /*type x = "abc" | "def"
