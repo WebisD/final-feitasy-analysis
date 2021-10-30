@@ -46,6 +46,8 @@ export default class Character implements IDrawable {
 
             return 5;
         })
+
+        session.close()
     }
 }
 
