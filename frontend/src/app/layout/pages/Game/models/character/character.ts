@@ -1,5 +1,4 @@
 import IDrawable from "../../common/IDrawable"
-import { createCharacterAsync } from "../../transactions/transactions";
 import { getCanvasRef } from "../../utils/references"
 
 export default class Character implements IDrawable {
