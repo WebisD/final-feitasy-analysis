@@ -14,7 +14,7 @@ let character: Character;
 
 const createPlayer = async (playerBreed: string, nickname: string) => {
     const playerId = await createCharacterAsync(playerBreed, nickname);
-    character = new Character(playerId, true);
+    character = new Character(playerId, true, playerBreed, nickname);
 };
 
 const initializeCanvas = () => {

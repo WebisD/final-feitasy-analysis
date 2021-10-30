@@ -1,15 +1,16 @@
 import IDrawable from "../../common/IDrawable";
 import { getCanvasRef } from "../../utils/references";
 
+var worldImage = new Image();
+worldImage.src = "https://cdn.conceptartempire.com/images/05/5265/00-lighter-featured-game-art-world-pixelart.jpg";
+
 export default class World implements IDrawable {
     private floorSize: number[] = [2000, 5]; 
 
     draw() {
         const { canvas, ctx } = getCanvasRef();
 
-        ctx.fillStyle = '#000000';
-
         ctx.beginPath();
-        ctx.fillRect(Math.floor(canvas.width/2), Math.floor(canvas.height/2), this.floorSize[0], this.floorSize[1]);
+        ctx.drawImage(worldImage, 0, 0, canvas.width, canvas.height);
     };
 }

@@ -1,17 +1,33 @@
 import IDrawable from "../../common/IDrawable"
 import { getCanvasRef } from "../../utils/references"
 
-export default class Character implements IDrawable {
-    private id: string;
-    private width: number = 30;
-    private height: number = 30;
-    private color: string = "red";
-    private x: number = 100;
-    private y: number = 100;
-    private speed: number = 10;
+var warriorImage = new Image();
+warriorImage.src = "https://i.pinimg.com/originals/0c/b9/19/0cb919c61e34ed0aaaefd10a0eb5c457.gif";
+var wizardImage = new Image();
+wizardImage.src = "https://i.pinimg.com/originals/9c/6d/a8/9c6da87a758a7e919f54e564d9930bbe.gif";
 
-    constructor(id: string, isPlayer: boolean = false) {
+export default class Character implements IDrawable {
+    public id: string;
+    public nick: string;
+    public type: string;
+    public width: number = 75;
+    public height: number = 75;
+    public color: string = "red";
+    public x: number = 100;
+    public y: number = 100;
+    public speed: number = 10;
+    public imagem = new Image();
+
+    constructor(id: string, isPlayer: boolean = false, type: string, nick: string) {
         this.id = id;
+        this.type = type;
+        this.nick = nick;
+
+        if(type == "Guerreiro"){
+            this.imagem = warriorImage
+        } else if(type == "Feiticeiro"){
+            this.imagem = wizardImage
+        }
 
         /* If a new player is joining the game, add keyboard event listener */
         if (isPlayer)
@@ -21,8 +37,22 @@ export default class Character implements IDrawable {
     public draw = () => {
         const { ctx } = getCanvasRef();
 
+        //Limits (gives the illusion of walls)
+        var leftLimit = -6;
+        var rightLimit = (110 * 11)+8;
+        var topLimit = -6 + 32;
+        var bottomLimit = (50 * 7);
+        if (this.x < leftLimit) { this.x = leftLimit; }
+        if (this.x > rightLimit) { this.x = rightLimit; }
+        if (this.y < topLimit) { this.y = topLimit; }
+        if (this.y > bottomLimit) { this.y = bottomLimit; }
+
+        ctx.fillStyle = "black";
+        ctx.font = "15px Roboto";
+        ctx.fillText(this.nick, this.x + 10, this.y + 10);
+
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.imagem, this.x, this.y, this.width, this.height);
     };
 
     private move = (e:KeyboardEvent) => {
@@ -34,6 +64,14 @@ export default class Character implements IDrawable {
             case 'D':
                 this.x += this.speed;
                 break;
+            
+            case 'S':
+                this.y += this.speed;
+                break; 
+            
+            case 'W':
+                this.y -= this.speed;
+                break;  
         }  
     };
 
