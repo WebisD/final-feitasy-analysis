@@ -3,15 +3,20 @@ import { createCharacterAsync } from "../../transactions/transactions";
 import { getCanvasRef } from "../../utils/references"
 
 export default class Character implements IDrawable {
+    private id: string;
     private width: number = 30;
     private height: number = 30;
     private color: string = "red";
     private x: number = 100;
     private y: number = 100;
     private speed: number = 10;
-    
-    constructor () {
-        window.addEventListener("keydown", this.move, false);
+
+    constructor(id: string, isPlayer: boolean = false) {
+        this.id = id;
+
+        /* If a new player is joining the game, add keyboard event listener */
+        if (isPlayer)
+            window.addEventListener("keydown", this.move, false);
     }
 
     public draw = () => {

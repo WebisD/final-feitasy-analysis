@@ -7,15 +7,18 @@ let canvas: HTMLCanvasElement;
 let ctx: CanvasRenderingContext2D;
 
 
-const world = new World();
-const character = new Character();
+let world = new World();
+let character: Character;
 //let enemies:Character[] = [new Character()];
 
 
+const createPlayer = async () => {
+    const playerId = await createCharacterAsync();
+    character = new Character(playerId, true);
+};
+
 const initializeCanvas = () => {
     canvas = getCanvasRef().canvas;
-
-    //createCharacterAsync()
 
     // Set sizes
     canvas.width = window.innerWidth;
@@ -31,16 +34,18 @@ const draw = () => {
     /* DESENHOS AQUI */
     world.draw();
     character.draw();
-    
 }
 
 const render = () => {
-    draw();
+    if (!!character)
+        draw();
+        
     window.requestAnimationFrame(render)
 } 
 
 export const run = () => {
     initializeCanvas();
+    createPlayer();
 
     render();
 }
