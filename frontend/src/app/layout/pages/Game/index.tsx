@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 /* Selectors */
 import { isPlayingSelector, useAppSelector } from '../../../store/selectors/graph';
+import MenuGame from '../../components/MenuGame';
+import SelectCharacter from '../../components/SelectCharacter';
 
 /* Components */
 import Canvas from './components/Canvas';
