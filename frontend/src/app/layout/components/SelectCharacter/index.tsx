@@ -6,10 +6,11 @@ import ImgWizard from '../../../assets/img/wizard.svg';
 type Props = {
   selectCharacter: number;
   setSelectCharacter: (state: number) => void;
+  setState: (state: string) => void;
 }
 
 
-function SelectCharacter ( {selectCharacter, setSelectCharacter }: Props ) {
+function SelectCharacter ( {selectCharacter, setSelectCharacter, setState }: Props ) {
 
   return (
     <>
@@ -42,7 +43,7 @@ function SelectCharacter ( {selectCharacter, setSelectCharacter }: Props ) {
     </button>
     </div>
     <div className="d-flex justify-content-center">
-    <button type="button" className="btn btn-success btn-lg" onClick={() => alert(selectCharacter)}>Play Now</button>
+    <button type="button" className="btn btn-success btn-lg" onClick={() => setState('canvas')}>Play Now</button>
     </div>
     </div>
     </>
