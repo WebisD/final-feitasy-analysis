@@ -40,7 +40,7 @@ const render = () => {
     if (!!character)
         draw();
         
-    window.requestAnimationFrame(render)
+    window.requestAnimationFrame(render);
 } 
 
 export const run = (playerBreed: string, nickname: string) => {
