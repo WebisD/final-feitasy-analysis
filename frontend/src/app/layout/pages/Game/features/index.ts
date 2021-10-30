@@ -12,8 +12,8 @@ let character: Character;
 //let enemies:Character[] = [new Character()];
 
 
-const createPlayer = async () => {
-    const playerId = await createCharacterAsync();
+const createPlayer = async (playerBreed: string, nickname: string) => {
+    const playerId = await createCharacterAsync(playerBreed, nickname);
     character = new Character(playerId, true);
 };
 
@@ -43,9 +43,9 @@ const render = () => {
     window.requestAnimationFrame(render)
 } 
 
-export const run = () => {
+export const run = (playerBreed: string, nickname: string) => {
     initializeCanvas();
-    createPlayer();
+    createPlayer(playerBreed, nickname);
 
     render();
 }

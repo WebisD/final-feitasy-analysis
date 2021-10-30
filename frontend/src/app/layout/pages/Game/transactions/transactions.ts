@@ -5,10 +5,15 @@ import { v4 as newUuid } from 'uuid';
 import { getRandomBreed } from "../models/character/attributes/breeds";
 import { getRandomClass } from "../models/character/attributes/class";
 
-export const createCharacterAsync = async (): Promise<string> => {
+export const createCharacterAsync = async (
+    characterBreed?: string, 
+    nickname?: string
+): Promise<string> => {
+
     const session = driver.session();
 
         const characterId = newUuid();
+        
 
         // Character
         await session.writeTransaction(async tx => {
@@ -17,8 +22,8 @@ export const createCharacterAsync = async (): Promise<string> => {
                     {
                         id_pk: '${characterId}',
                         type_char:0,
-                        name:'Novo Character',
-                        caption: 'Novo Character',
+                        name: ${ `'${nickname ?? 'Novo Character'}'`},
+                        caption: ${ `'${nickname ?? 'Novo Character'}'`},
                         gender:'Male',
                         level: 1,
                         color: '#5478dd'
@@ -34,7 +39,7 @@ export const createCharacterAsync = async (): Promise<string> => {
 
         // Breed
         await session.writeTransaction(async tx => {
-            await tx.run(createBreedQuery(characterId));
+            await tx.run(createBreedQuery(characterId, characterBreed));
         });
 
     session.close();
@@ -55,8 +60,12 @@ const createInventoryQuery = (characterId: string):string =>
         }
     )`;
 
-const createBreedQuery = (characterId: string): string => {
-    const breedName = getRandomBreed();
+const createBreedQuery = (
+    characterId: string, 
+    characterBreed?: string
+): string => {
+
+    const breedName = characterBreed ?? getRandomBreed();
 
     return `
         match (c:Character { id_pk: '${characterId}' } )

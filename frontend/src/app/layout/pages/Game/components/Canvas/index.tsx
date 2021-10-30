@@ -2,7 +2,12 @@ import React, { useRef, useEffect } from 'react';
 import { run } from '../../features';
 import { setCanvasRef } from '../../utils/references';
 
-const Canvas: React.FC<{ selectedCharacter: number }> = ({ selectedCharacter }) => {
+interface IProps {
+  nickname: string;
+  selectedCharacter: string;
+}
+
+const Canvas: React.FC<IProps> = ({ selectedCharacter, nickname }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     
     useEffect(() => {
@@ -12,11 +17,11 @@ const Canvas: React.FC<{ selectedCharacter: number }> = ({ selectedCharacter }) 
         canvas,
         ctx: canvas.getContext('2d')!
       });
+
+      if (selectedCharacter && nickname)
+        run(selectedCharacter, nickname);
       
-      if (selectedCharacter)
-        run();
-      
-    }, [selectedCharacter])
+    }, [selectedCharacter, nickname])
     
     return <canvas ref={canvasRef}/>
   }
