@@ -14,7 +14,6 @@ export const createCharacterAsync = async (
 
         const characterId = newUuid();
         
-
         // Character
         await session.writeTransaction(async tx => {
             await tx.run(`
