@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
-import { run } from '../features';
-import { setCanvasRef } from '../utils/references';
+import { run } from '../../features';
+import { setCanvasRef } from '../../utils/references';
 
-const Canvas: React.FC = () => {
+const Canvas: React.FC<{ selectedCharacter: number }> = ({ selectedCharacter }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     
     useEffect(() => {
@@ -13,9 +13,10 @@ const Canvas: React.FC = () => {
         ctx: canvas.getContext('2d')!
       });
       
-      run();
+      if (selectedCharacter)
+        run();
       
-    }, [])
+    }, [selectedCharacter])
     
     return <canvas ref={canvasRef}/>
   }

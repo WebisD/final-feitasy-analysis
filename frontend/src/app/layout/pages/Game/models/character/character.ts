@@ -1,13 +1,14 @@
 import IDrawable from "../../common/IDrawable"
+import { createCharacterAsync } from "../../transactions/transactions";
 import { getCanvasRef } from "../../utils/references"
 
 export default class Character implements IDrawable {
-    private width: number = 30
-    private height: number = 30
-    private color: string = "red"
-    private x: number = 100
-    private y: number = 100
-    private speed: number = 10
+    private width: number = 30;
+    private height: number = 30;
+    private color: string = "red";
+    private x: number = 100;
+    private y: number = 100;
+    private speed: number = 10;
     
     constructor () {
         window.addEventListener("keydown", this.move, false);
@@ -30,7 +31,7 @@ export default class Character implements IDrawable {
                 this.x += this.speed;
                 break;
         }  
-    }
+    };
 
 }
 

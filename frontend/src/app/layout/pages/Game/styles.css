@@ -1,4 +1,22 @@
+.game-wrapper, .select-character{
+    height: 80vh;
+    width: 100%;
+}
+
+.game-wrapper button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+}
+
+.game-wrapper button h5{
+    padding: 0;
+}
+
 .game-wrapper{
     position: relative;
-    height: 80vh;
 }

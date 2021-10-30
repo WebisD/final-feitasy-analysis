@@ -1,6 +1,7 @@
 import World from "../models/world/world";
 import { getCanvasRef } from "../utils/references"
 import Character from "../models/character/character"
+import { createCharacterAsync } from "../transactions/transactions";
 
 let canvas: HTMLCanvasElement;
 let ctx: CanvasRenderingContext2D;
@@ -13,6 +14,8 @@ const character = new Character();
 
 const initializeCanvas = () => {
     canvas = getCanvasRef().canvas;
+
+    //createCharacterAsync()
 
     // Set sizes
     canvas.width = window.innerWidth;
