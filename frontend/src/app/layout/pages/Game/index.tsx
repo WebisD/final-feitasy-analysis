@@ -58,6 +58,21 @@ const Game: React.FC = () => {
 
                         <button 
                             type="button" 
+                            className="btn btn-warning btn-lg"
+                            onClick={() => setSelectCharacter("Arqueiro")}
+                            style={{opacity: selectedCharacter !== "Arqueiro" ? 0.6 : 1}}
+                        >
+                            <img 
+                                src={ImgWizard}
+                                alt="Wizard"
+                                width="50"
+                            />
+                            <h5 className="card-title">Arqueiro</h5>
+
+                        </button>
+
+                        <button 
+                            type="button" 
                             className="btn btn-secondary btn-lg"
                             onClick={() => setSelectCharacter("Feiticeiro")}
                             style={{opacity: selectedCharacter !== "Feiticeiro" ? 0.6 : 1}}

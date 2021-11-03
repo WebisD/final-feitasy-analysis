@@ -21,14 +21,16 @@
     padding: 0;
 }
 
+.game-wrapper .player-name-field,.game-wrapper .btn-play{
+    width: 470px;
+}
+
 .game-wrapper .player-name-field {
-    width: 310px;
     margin-bottom: 1em;
 }
 
 .game-wrapper .btn-play {
     margin-top: 1em;
-    width: 310px;
 }
 
 
