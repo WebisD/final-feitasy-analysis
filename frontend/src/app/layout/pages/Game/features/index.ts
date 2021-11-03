@@ -7,7 +7,7 @@ let canvas: HTMLCanvasElement;
 let ctx: CanvasRenderingContext2D;
 
 
-let world = new World();
+export let world = new World();
 let character: Character;
 //let enemies:Character[] = [new Character()];
 
@@ -45,7 +45,9 @@ const render = () => {
 
 export const run = (playerBreed: string, nickname: string) => {
     initializeCanvas();
-    createPlayer(playerBreed, nickname);
-
+    
+    //Neo4j
+    //createPlayer(playerBreed, nickname);
+    character = new Character("007", true, playerBreed, nickname);
     render();
 }

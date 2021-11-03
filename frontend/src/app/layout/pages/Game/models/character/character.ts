@@ -1,32 +1,41 @@
-import IDrawable from "../../common/IDrawable"
-import { getCanvasRef } from "../../utils/references"
+import IDrawable from "../../common/IDrawable";
+import { getCanvasRef } from "../../utils/references";
+import { drawSprite } from "../../common/Sprite"
 
-var warriorImage = new Image();
-warriorImage.src = "https://i.pinimg.com/originals/0c/b9/19/0cb919c61e34ed0aaaefd10a0eb5c457.gif";
-var wizardImage = new Image();
-wizardImage.src = "https://i.pinimg.com/originals/9c/6d/a8/9c6da87a758a7e919f54e564d9930bbe.gif";
+//warriorImage.src = "https://i.pinimg.com/originals/0c/b9/19/0cb919c61e34ed0aaaefd10a0eb5c457.gif";
+//wizardImage.src = "https://i.pinimg.com/originals/9c/6d/a8/9c6da87a758a7e919f54e564d9930bbe.gif";*/
+
+import warriorImage from './sheets/warrior.png';
+import mageImage from './sheets/mage.png';
+import archerImage from './sheets/archer.png';
+import { world } from "../../features";
 
 export default class Character implements IDrawable {
     public id: string;
-    public nick: string;
+    public nickname: string;
     public type: string;
-    public width: number = 75;
-    public height: number = 75;
+    public width: number = 32;
+    public height: number = 48;
     public color: string = "red";
     public x: number = 100;
     public y: number = 100;
     public speed: number = 10;
-    public imagem = new Image();
 
-    constructor(id: string, isPlayer: boolean = false, type: string, nick: string) {
+    public sprite: HTMLImageElement = new Image();
+    public frameX: number = 0;
+    public frameY: number = 0;
+
+    constructor(id: string, isPlayer: boolean = false, type: string, nickname: string) {
         this.id = id;
         this.type = type;
-        this.nick = nick;
+        this.nickname = nickname;
 
-        if(type == "Guerreiro"){
-            this.imagem = warriorImage
-        } else if(type == "Feiticeiro"){
-            this.imagem = wizardImage
+        if(type === "Guerreiro"){
+            this.sprite.src = warriorImage
+        } else if(type === "Feiticeiro"){
+            this.sprite.src = mageImage
+        }else if(type === "Arqueiro"){
+            this.sprite.src = archerImage
         }
 
         /* If a new player is joining the game, add keyboard event listener */
@@ -37,43 +46,43 @@ export default class Character implements IDrawable {
     public draw = () => {
         const { ctx } = getCanvasRef();
 
-        //Limits (gives the illusion of walls)
-        var leftLimit = -6;
-        var rightLimit = (110 * 11)+8;
-        var topLimit = -6 + 32;
-        var bottomLimit = (50 * 7);
-        if (this.x < leftLimit) { this.x = leftLimit; }
-        if (this.x > rightLimit) { this.x = rightLimit; }
-        if (this.y < topLimit) { this.y = topLimit; }
-        if (this.y > bottomLimit) { this.y = bottomLimit; }
-
         ctx.fillStyle = "black";
         ctx.font = "15px Roboto";
-        ctx.fillText(this.nick, this.x + 10, this.y + 10);
+        ctx.fillText(this.nickname, this.x + this.width/2, this.y - 7);
 
-        ctx.fillStyle = this.color;
-        ctx.drawImage(this.imagem, this.x, this.y, this.width, this.height);
+        //ctx.fillStyle = this.color;
+
+        drawSprite(this.sprite, this.width*this.frameX, this.height*this.frameY, this.width, this.height, this.x, this.y, this.width*2, this.height*2);
+        //ctx.drawImage(this.imagem, this.x, this.y, this.width, this.height);
     };
 
     private move = (e:KeyboardEvent) => {
-        switch(e.key.toUpperCase()){
-            case 'A': 
-                this.x -= this.speed;
-                break;
-
-            case 'D':
-                this.x += this.speed;
-                break;
-            
-            case 'S':
-                this.y += this.speed;
-                break; 
-            
-            case 'W':
-                this.y -= this.speed;
-                break;  
-        }  
+        
+        const pressed_key = e.key.toUpperCase();
+        
+        if (pressed_key === 'A' && this.x > world.leftLimit){
+            this.x -= this.speed;
+            this.frameY = 1;
+        }
+        if (pressed_key === 'D' && this.x < world.rightLimit){
+            this.x += this.speed;
+            this.frameY = 2;
+        }
+        if (pressed_key === 'S' && this.y < world.bottomLimit){
+            this.y += this.speed;
+            this.frameY = 0;
+        }
+        if (pressed_key === 'W' && this.y > world.topLimit){
+            this.y -= this.speed;
+            this.frameY = 3;
+        } 
+        this.handlePlayerFrame()
     };
+
+    private handlePlayerFrame = () => {
+        if (this.frameX < 3) this.frameX++;
+        else this.frameX = 0;
+    }
 
 }
 
