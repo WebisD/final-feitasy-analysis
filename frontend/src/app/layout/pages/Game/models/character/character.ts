@@ -1,14 +1,12 @@
 import IDrawable from "../../common/IDrawable";
 import { getCanvasRef } from "../../utils/references";
 import { drawSprite } from "../../common/Sprite"
-
-//warriorImage.src = "https://i.pinimg.com/originals/0c/b9/19/0cb919c61e34ed0aaaefd10a0eb5c457.gif";
-//wizardImage.src = "https://i.pinimg.com/originals/9c/6d/a8/9c6da87a758a7e919f54e564d9930bbe.gif";*/
-
-import warriorImage from './sheets/warrior.png';
-import mageImage from './sheets/mage.png';
-import archerImage from './sheets/archer.png';
 import { world } from "../../features";
+
+import warriorImage from './sheets/images/warrior.png';
+import mageImage from './sheets/images/mage.png';
+import archerImage from './sheets/images/archer.png';
+import { CharacterFrame} from "./sheets/characterEnum";
 
 export default class Character implements IDrawable {
     public id: string;
@@ -62,24 +60,24 @@ export default class Character implements IDrawable {
         
         if (pressed_key === 'A' && this.x > world.leftLimit){
             this.x -= this.speed;
-            this.frameY = 1;
+            this.frameY = CharacterFrame.LEFT_DIRECTION;
         }
         if (pressed_key === 'D' && this.x < world.rightLimit - this.width*2){
             this.x += this.speed;
-            this.frameY = 2;
+            this.frameY = CharacterFrame.RIGHT_DIRECTION;
         }
         if (pressed_key === 'S' && this.y < world.bottomLimit - this.height*2){
             this.y += this.speed;
-            this.frameY = 0;
+            this.frameY = CharacterFrame.DOWN_DIRECTION;
         }
         if (pressed_key === 'W' && this.y > world.topLimit){
             this.y -= this.speed;
-            this.frameY = 3;
+            this.frameY = CharacterFrame.UP_DIRECTION;
         } 
-        this.handlePlayerFrame()
+        this.handleCharacterFrame()
     };
 
-    private handlePlayerFrame = () => {
+    private handleCharacterFrame = () => {
         if (this.frameX < 3) this.frameX++;
         else this.frameX = 0;
     }

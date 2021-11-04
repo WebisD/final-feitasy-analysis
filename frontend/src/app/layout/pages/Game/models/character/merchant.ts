@@ -1,9 +1,9 @@
 import IDrawable from "../../common/IDrawable";
+import { world } from "../../features";
 import { getCanvasRef } from "../../utils/references";
 import { drawSprite } from "../../common/Sprite";
 
-import merchantImage from "./sheets/merchant.png";
-import { world } from "../../features";
+import merchantImage from "./sheets/images/merchant.png";
 
 export default class Merchant implements IDrawable {
     public id: string;

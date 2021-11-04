@@ -7,12 +7,9 @@ import { createCharacterAsync } from "../transactions/transactions";
 let canvas: HTMLCanvasElement;
 let ctx: CanvasRenderingContext2D;
 
-
 export let world: World;
-let character: Character;
-let merchant: Merchant;
-//let enemies:Character[] = [new Character()];
-
+export let character: Character;
+export let merchant: Merchant;
 
 const createPlayer = async (playerBreed: string, nickname: string) => {
     const playerId = await createCharacterAsync(playerBreed, nickname);
@@ -29,7 +26,6 @@ const initializeCanvas = () => {
 const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    /* DESENHOS AQUI */
     world.draw();
     merchant.draw();
     character.draw();
