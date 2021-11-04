@@ -46,8 +46,8 @@ export default class Character implements IDrawable {
     public draw = () => {
         const { ctx } = getCanvasRef();
 
-        ctx.fillStyle = "black";
-        ctx.font = "15px Roboto";
+        ctx.fillStyle = "white";
+        ctx.font = "bold 15px Courier New";
         ctx.fillText(this.nickname, this.x + this.width/2, this.y - 7);
 
         //ctx.fillStyle = this.color;

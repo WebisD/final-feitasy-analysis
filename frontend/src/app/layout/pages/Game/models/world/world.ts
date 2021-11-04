@@ -15,10 +15,6 @@ export default class World implements IDrawable {
         const { canvas, ctx } = getCanvasRef();
 
         ctx.beginPath();
-        ctx.drawImage(worldImage, 0, 0, canvas.width, canvas.height);   
-        console.log(canvas.width);
-        console.log(canvas.height);
-        
-        
+        ctx.drawImage(worldImage, 0, 0, canvas.width, canvas.height);
     };
 }

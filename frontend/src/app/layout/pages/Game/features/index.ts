@@ -1,6 +1,7 @@
 import World from "../models/world/world";
 import { getCanvasRef } from "../utils/references"
 import Character from "../models/character/character"
+import Merchant from "../models/character/merchant"
 import { createCharacterAsync } from "../transactions/transactions";
 
 let canvas: HTMLCanvasElement;
@@ -9,6 +10,7 @@ let ctx: CanvasRenderingContext2D;
 
 export let world = new World();
 let character: Character;
+let merchant: Merchant = new Merchant("999", false, "Merchant", "Merchant");
 //let enemies:Character[] = [new Character()];
 
 
@@ -33,6 +35,7 @@ const draw = () => {
 
     /* DESENHOS AQUI */
     world.draw();
+    merchant.draw();
     character.draw();
 }
 
