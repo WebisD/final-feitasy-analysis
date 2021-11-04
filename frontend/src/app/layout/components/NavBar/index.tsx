@@ -9,6 +9,7 @@ import ImgDS from '../../../assets/img/icon.svg';
 import ImgDsTitle from '../../../assets/img/title.svg';
 import WasdKeys from '../../../assets/img/keys_wasd.png';
 import EnterKey from '../../../assets/img/keys_enter.png';
+import BackspaceKey from '../../../assets/img/keys_backspace.png';
 
 /* Selectors | Actions*/
 import { setDataTableVisible, setIsPlaying } from '../../../store/dispatches';
@@ -36,8 +37,15 @@ const NavBar: React.FC = () => {
             </span>
 
             {isPlaying && <span className="navbar-game-keys d-flex text-light " style={{gap: '30px'}}>
-              <span className="d-flex align-items-center"><img src={WasdKeys} alt="Move keys" width="90"/> Mover</span>
-              <span className="d-flex align-items-center"><img src={EnterKey} alt="Communicate key" width="120" /> Comunicar</span>
+              <span className="d-flex align-items-center">
+                <img src={WasdKeys} style={{ width: 100, height: 50 }} alt="Mover"/> Mover
+              </span>
+              <span className="d-flex align-items-center">
+                <img src={EnterKey} style={{ width: 100, height: 50 }} alt="Comunicar"/> Comunicar
+              </span>
+              <span className="d-flex align-items-center">
+                <img src={BackspaceKey} style={{ width: 100, height: 50 }} alt="Pausar"/> Pausar
+              </span>
             </span>}
 
             <span 

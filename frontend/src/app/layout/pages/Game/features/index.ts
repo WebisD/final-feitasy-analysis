@@ -1,23 +1,27 @@
 import World from "../models/world/world";
-import { getCanvasRef } from "../utils/references"
-import Character from "../models/character/character"
-import Merchant from "../models/character/merchant"
+import Player from "../models/player";
+import Merchant from '../models/merchant';
+
+import { getCanvasRef } from "../utils/references";
 import { createCharacterAsync } from "../transactions/transactions";
 
 let canvas: HTMLCanvasElement;
 let ctx: CanvasRenderingContext2D;
 
 export let world: World;
-export let character: Character;
+export let player: Player;
 export let merchant: Merchant;
 
 const createPlayer = async (playerBreed: string, nickname: string) => {
     const playerId = await createCharacterAsync(playerBreed, nickname);
-    character = new Character(playerId, true, playerBreed, nickname);
+    //character = new Character(playerId, true, playerBreed, nickname);
 };
 
 const initializeCanvas = () => {
     canvas = getCanvasRef().canvas;
+
+    canvas.width = window.innerWidth;
+    canvas.height = canvas.parentElement!.clientHeight;
 
     // Set 2D context
     ctx = getCanvasRef().ctx;
@@ -28,11 +32,14 @@ const draw = () => {
 
     world.draw();
     merchant.draw();
-    character.draw();
+    player.draw();
+
+    if (!!world.enemies) 
+        world.enemies.forEach(enemy => enemy.update());
 }
 
 const render = () => {
-    if (!!character)
+    if (!!player && !player.pausedGame)
         draw();
         
     window.requestAnimationFrame(render);
@@ -42,11 +49,11 @@ export const run = (playerBreed: string, nickname: string) => {
     initializeCanvas();
 
     world = new World();
-    merchant = new Merchant("999", false, "Merchant", "Merchant");
+    merchant = new Merchant("001");
     
     //Neo4j
     //createPlayer(playerBreed, nickname);
-    character = new Character("007", true, playerBreed, nickname);
+    player = new Player("007", playerBreed, nickname);
 
     render();
 }
