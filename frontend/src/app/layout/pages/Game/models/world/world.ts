@@ -6,7 +6,7 @@ import { getCanvasRef } from "../../utils/references";
 import _ from "lodash";
 
 const worldImage = new Image();
-worldImage.src = "https://cdn.conceptartempire.com/images/05/5265/00-lighter-featured-game-art-world-pixelart.jpg";
+worldImage.src = "https://opengameart.org/sites/default/files/03_10.png";
 
 export default class World implements IDrawable {
     // Limits

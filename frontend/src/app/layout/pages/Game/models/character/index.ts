@@ -8,8 +8,8 @@ export default abstract class Character implements IDrawable {
     public nickname: string;
     public width: number = 32;
     public height: number = 48;
-    public x: number = 100;
-    public y: number = 100;
+    public x: number = 500;
+    public y: number = 500;
     public speed: number = 10;
 
     // Sprites
