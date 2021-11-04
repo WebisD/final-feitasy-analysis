@@ -12,6 +12,7 @@ import './styles.css';
 /* Assets */
 import ImgWarrior from '../../../assets/img/warrior.svg';
 import ImgWizard from '../../../assets/img/wizard.svg';
+import ImgArcher from '../../../assets/img/archer.svg';
 
 const Game: React.FC = () => {
     const isPlaying = useAppSelector(isPlayingSelector);
@@ -63,8 +64,8 @@ const Game: React.FC = () => {
                             style={{opacity: selectedCharacter !== "Arqueiro" ? 0.6 : 1}}
                         >
                             <img 
-                                src={ImgWizard}
-                                alt="Wizard"
+                                src={ImgArcher}
+                                alt="Archer"
                                 width="50"
                             />
                             <h5 className="card-title">Arqueiro</h5>
