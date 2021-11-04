@@ -1,5 +1,5 @@
 .game-wrapper, .select-character{
-    height: 80vh;
+    height: 100%;
     width: 100%;
     border: 1px solid #cecccd;
 }

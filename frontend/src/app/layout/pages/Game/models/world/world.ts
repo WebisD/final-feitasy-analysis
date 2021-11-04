@@ -16,7 +16,7 @@ export default class World implements IDrawable {
 
         this.leftLimit = 0
         this.topLimit = 0 + 30
-        this.bottomLimit = canvas.height - (canvas.height*0.2)
+        this.bottomLimit = canvas.height - (canvas.height*0.1)
         this.rightLimit = canvas.width - 65
 
         ctx.beginPath();

@@ -22,10 +22,6 @@ const createPlayer = async (playerBreed: string, nickname: string) => {
 const initializeCanvas = () => {
     canvas = getCanvasRef().canvas;
 
-    // Set sizes
-    canvas.width = window.innerWidth;
-    canvas.height = 0.8 * window.innerHeight;
-
     // Set 2D context
     ctx = getCanvasRef().ctx;
 }
