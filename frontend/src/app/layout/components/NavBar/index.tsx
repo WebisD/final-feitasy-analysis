@@ -7,6 +7,8 @@ import { Switch } from '@chakra-ui/switch';
 /* Images */
 import ImgDS from '../../../assets/img/icon.svg';
 import ImgDsTitle from '../../../assets/img/title.svg';
+import WasdKeys from '../../../assets/img/keys_wasd.png';
+import EnterKey from '../../../assets/img/keys_enter.png';
 
 /* Selectors | Actions*/
 import { setDataTableVisible, setIsPlaying } from '../../../store/dispatches';
@@ -32,6 +34,11 @@ const NavBar: React.FC = () => {
               <img src={ImgDS} alt="Final Feitasy" width="50" />
               <img src={ImgDsTitle} alt="Titulo" width="50" />
             </span>
+
+            {isPlaying && <span className="navbar-game-ico d-flex text-light " style={{gap: '30px'}}>
+              <span className="d-flex align-items-center"><img src={WasdKeys} alt="Move keys" width="90"/> Mover</span>
+              <span className="d-flex align-items-center"><img src={EnterKey} alt="Communicate key" width="120" /> Comunicar</span>
+            </span>}
 
             <span 
               className="btn btn-primary play-game-btn" 
