@@ -28,7 +28,10 @@ export default class Merchant implements IDrawable {
     }
 
     public draw = () => {
-        const { ctx } = getCanvasRef();
+        const { ctx, canvas } = getCanvasRef();
+
+        this.x = canvas.width - this.width - 200
+        this.y = this.height + 5
 
         ctx.fillStyle = "white";
         ctx.font = "bold 20px Courier New";
