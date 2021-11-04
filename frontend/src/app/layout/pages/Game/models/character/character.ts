@@ -64,11 +64,11 @@ export default class Character implements IDrawable {
             this.x -= this.speed;
             this.frameY = 1;
         }
-        if (pressed_key === 'D' && this.x < world.rightLimit){
+        if (pressed_key === 'D' && this.x < world.rightLimit - this.width*2){
             this.x += this.speed;
             this.frameY = 2;
         }
-        if (pressed_key === 'S' && this.y < world.bottomLimit){
+        if (pressed_key === 'S' && this.y < world.bottomLimit - this.height*2){
             this.y += this.speed;
             this.frameY = 0;
         }

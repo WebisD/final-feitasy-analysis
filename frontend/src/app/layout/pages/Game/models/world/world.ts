@@ -15,9 +15,9 @@ export default class World implements IDrawable {
         const { canvas, ctx } = getCanvasRef();
 
         this.leftLimit = 0
-        this.topLimit = 0 + 30
-        this.bottomLimit = canvas.height - (canvas.height*0.1)
-        this.rightLimit = canvas.width - 65
+        this.topLimit = 0
+        this.bottomLimit = canvas.height
+        this.rightLimit = canvas.width
 
         ctx.beginPath();
         ctx.drawImage(worldImage, 0, 0, canvas.width, canvas.height);
