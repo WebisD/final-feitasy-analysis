@@ -35,7 +35,7 @@ const NavBar: React.FC = () => {
               <img src={ImgDsTitle} alt="Titulo" width="50" />
             </span>
 
-            {isPlaying && <span className="navbar-game-ico d-flex text-light " style={{gap: '30px'}}>
+            {isPlaying && <span className="navbar-game-keys d-flex text-light " style={{gap: '30px'}}>
               <span className="d-flex align-items-center"><img src={WasdKeys} alt="Move keys" width="90"/> Mover</span>
               <span className="d-flex align-items-center"><img src={EnterKey} alt="Communicate key" width="120" /> Comunicar</span>
             </span>}

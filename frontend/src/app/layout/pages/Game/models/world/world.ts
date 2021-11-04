@@ -1,24 +1,17 @@
 import IDrawable from "../../common/IDrawable";
 import { getCanvasRef } from "../../utils/references";
 
-
-var worldImage = new Image();
+const worldImage = new Image();
 worldImage.src = "https://cdn.conceptartempire.com/images/05/5265/00-lighter-featured-game-art-world-pixelart.jpg";
 
 export default class World implements IDrawable {
-    public leftLimit:number = -500;
-    public rightLimit:number = (110 * 11)+8;
-    public topLimit:number = -6 + 32;
-    public bottomLimit:number = 50*7;
+    public leftLimit:number = 0;
+    public topLimit:number = 0;
+    public rightLimit:number = getCanvasRef()?.canvas.width ?? 0;
+    public bottomLimit:number = getCanvasRef()?.canvas.height ?? 0;
 
-    draw() {
+    public draw() {
         const { canvas, ctx } = getCanvasRef();
-
-        this.leftLimit = 0
-        this.topLimit = 0
-        this.bottomLimit = canvas.height
-        this.rightLimit = canvas.width
-
         ctx.beginPath();
         ctx.drawImage(worldImage, 0, 0, canvas.width, canvas.height);
     };

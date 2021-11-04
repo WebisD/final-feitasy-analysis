@@ -8,9 +8,9 @@ let canvas: HTMLCanvasElement;
 let ctx: CanvasRenderingContext2D;
 
 
-export let world = new World();
+export let world: World;
 let character: Character;
-let merchant: Merchant = new Merchant("999", false, "Merchant", "Merchant");
+let merchant: Merchant;
 //let enemies:Character[] = [new Character()];
 
 
@@ -44,9 +44,13 @@ const render = () => {
 
 export const run = (playerBreed: string, nickname: string) => {
     initializeCanvas();
+
+    world = new World();
+    merchant = new Merchant("999", false, "Merchant", "Merchant");
     
     //Neo4j
     //createPlayer(playerBreed, nickname);
     character = new Character("007", true, playerBreed, nickname);
+
     render();
 }
