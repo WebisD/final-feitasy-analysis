@@ -1,5 +1,6 @@
 import IDrawable from "../../common/IDrawable";
 import Enemy from '../enemy';
+import { player } from "../../features";
 
 // Utils
 import { getCanvasRef } from "../../utils/references";
@@ -7,6 +8,9 @@ import _ from "lodash";
 
 const worldImage = new Image();
 worldImage.src = "https://opengameart.org/sites/default/files/03_10.png";
+
+const scoreImage = new Image();
+scoreImage.src = "https://lh3.googleusercontent.com/proxy/-1FTJi2RWmCxv7Hg8V_M71fCBHQXvbI1_GYNDKbmVafSdGcjffOHjrAKzphKeBzOSTGmsHGhNSZfvVrXkqjGBNdL66yYXCkB";
 
 export default class World implements IDrawable {
     // Limits
@@ -29,6 +33,12 @@ export default class World implements IDrawable {
 
         ctx.beginPath();
         ctx.drawImage(worldImage, 0, 0, canvas.width, canvas.height);
+
+        //Score
+        ctx.fillStyle = "yellow";
+        ctx.font = "30px Roboto";
+        ctx.drawImage(scoreImage, canvas.width/3, 0, 200, 50);
+        ctx.fillText("" + player.score, canvas.width/3 + 200, 35);
     };
 
     public generateEnemies = () => {

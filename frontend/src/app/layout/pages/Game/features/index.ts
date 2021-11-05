@@ -40,7 +40,6 @@ const draw = () => {
     jail.draw();
     player.draw();
 
-
     if (!!world.enemies) 
         world.enemies.forEach(enemy => enemy.update());
 }
