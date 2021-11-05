@@ -22,7 +22,7 @@ export default class Enemy extends Character{
         this.id = id;
         this.breed = getRandomBreed();
         this.nickname = 'Enemy';
-        this.speed = _.random(0.1, 1.6, true);
+        this.speed = _.random(0.05, 0.5, true);
         this.getRandomEnemySprite()
 
         // Position
@@ -35,17 +35,7 @@ export default class Enemy extends Character{
         this.move();
     };
 
-    /*
-    import titanImage from '../../sprites/images/titan.png';
-    import ifritImage from '../../sprites/images/ifrit.png';
-    import leviathanImage from '../../sprites/images/leviathan.png';
-    import odinImage from '../../sprites/images/odin.png';
-    import bahamutImage from '../../sprites/images/bahamut.png';
-    
-    */
-
     private getRandomEnemySprite = () => {
-        
         const randomSprite = _.sample([
             {
                 sprite: titanImage,

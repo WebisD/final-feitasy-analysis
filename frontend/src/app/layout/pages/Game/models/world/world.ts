@@ -33,15 +33,20 @@ export default class World implements IDrawable {
 
     public generateEnemies = () => {
         const { canvas } = getCanvasRef();
-        const [minEnemiesAmount, maxEnemiesAmount] = [5, 10];
+        const [minEnemiesAmount, maxEnemiesAmount] = [10, 20];
         const offset = 100;
 
         const enemiesList: Enemy[] = [];
         const enemiesAmount = _.random(minEnemiesAmount, maxEnemiesAmount, false);
 
         for(let i = 0; i < enemiesAmount; i++){
-            const randomCoordsX = _.random(-offset, canvas.width + offset);
-            const randomCoordsY = _.random(-offset, canvas.height + offset)
+            const randomCoordsX = 
+                _.sample([
+                    _.random(-offset, 0), 
+                    _.random(canvas.width, canvas.width + offset)
+                ])!
+
+            const randomCoordsY = _.random(-offset, canvas.height + offset);
             
             const newEnemy = new Enemy('abc', randomCoordsX, randomCoordsY);
             enemiesList.push(newEnemy);
