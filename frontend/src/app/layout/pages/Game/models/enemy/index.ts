@@ -3,7 +3,7 @@ import _ from 'lodash';
 // Entities
 import Character from '../character';
 import { getRandomBreed } from '../character/attributes/breeds';
-import { player } from '../../features';
+import { player, jail } from '../../features';
 
 // Sprites
 import titanImage from '../../sprites/images/titan.png';
@@ -75,11 +75,11 @@ export default class Enemy extends Character{
     };
 
     protected move = (e?: KeyboardEvent) => {
-        const distancePlayerX = player.x - this.x;
-        const distancePlayerY = player.y - this.y;
+        const distanceJailX = jail.x - this.x;
+        const distanceJailY = jail.y - this.y;
 
         if (!player.pausedGame){
-            if (distancePlayerX > 0) {
+            if (distanceJailX > 0) {
                 this.x += this.speed;
                 this.frameY = CharacterFrame.RIGHT_DIRECTION;
             } else {
@@ -87,7 +87,7 @@ export default class Enemy extends Character{
                 this.frameY = CharacterFrame.LEFT_DIRECTION;
             }
 
-            if (distancePlayerY > 0) {
+            if (distanceJailY > 0) {
                 this.y += this.speed
                 this.frameY = CharacterFrame.DOWN_DIRECTION;
             } else {

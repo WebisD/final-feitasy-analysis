@@ -28,7 +28,7 @@ export default abstract class Character implements IDrawable {
         const { ctx } = getCanvasRef();
 
         const nicknamePosition = {
-            x: this.x + this.width/2,
+            x: this.x - this.width/4,
             y: this.y - 7
         };
 

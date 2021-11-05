@@ -2,6 +2,7 @@ import World from "../models/world/world";
 import Player from "../models/player";
 import Merchant from '../models/merchant';
 import Princess from "../models/princess";
+import Jail from "../models/jail";
 
 import { getCanvasRef } from "../utils/references";
 import { createCharacterAsync } from "../transactions/transactions";
@@ -13,6 +14,7 @@ export let world: World;
 export let player: Player;
 export let merchant: Merchant;
 export let princess: Princess;
+export let jail: Jail;
 
 const createPlayer = async (playerBreed: string, nickname: string) => {
     const playerId = await createCharacterAsync(playerBreed, nickname);
@@ -35,7 +37,9 @@ const draw = () => {
     world.draw();
     merchant.draw();
     princess.draw();
+    jail.draw();
     player.draw();
+
 
     if (!!world.enemies) 
         world.enemies.forEach(enemy => enemy.update());
@@ -53,7 +57,7 @@ export const run = (playerBreed: string, nickname: string) => {
 
     world = new World();
     merchant = new Merchant("001");
-    
+    jail = new Jail();
     princess = new Princess("100");
 
     //Neo4j
