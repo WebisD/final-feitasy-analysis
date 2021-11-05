@@ -41,8 +41,6 @@ const applyTimedQuery = (
                     neighbor_node: entity[2] 
                 }));
 
-            console.log(mappedResult)
-            
             const nodesArr: INode[] = [];
             const edgesArr: IEdge[] = [];
             

@@ -44,13 +44,15 @@ const draw = () => {
 }
 
 const render = () => {
-    if (princess.dead){
-        // 
-    }
+    if (jail.disappeared)
+        world.drawWinScreen();
+    
+    else if (jail.isDestroyed)
+        world.drawLostScreen();
 
     else if (!!player && !player.pausedGame)
         draw();
-        
+
     window.requestAnimationFrame(render);
 } 
 
@@ -61,14 +63,13 @@ export const run = async (
     initializeCanvas();
 
     world = new World();
+    jail = new Jail();
     
     player = new Player(playerBreed, nickname);
     await player.createPlayer();
 
     merchant = new Merchant();
     await merchant.createMerchant();
-    
-    jail = new Jail();
 
     princess = new Princess();
     await princess.createPrincess();
