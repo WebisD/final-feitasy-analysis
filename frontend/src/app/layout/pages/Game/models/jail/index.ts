@@ -16,14 +16,14 @@ export default class Jail {
     public y: number;
     public life: number;
     public isDestroyed: boolean;
-    public disappeared: boolean;
+    public hasDisappeared: boolean;
     public disappearSpeed: number;
     public sprite: HTMLImageElement = new Image();
 
     constructor() {
         this.life = 5;
         this.isDestroyed = false;
-        this.disappeared = false;
+        this.hasDisappeared = false;
         this.disappearSpeed = 1.5;
         this.sprite.src = jailImage;
 
@@ -46,7 +46,7 @@ export default class Jail {
             if (this.y + this.height > 0)
                 this.y -= this.disappearSpeed;
             else
-                this.disappeared = true;
+                this.hasDisappeared = true;
         }
     }
 

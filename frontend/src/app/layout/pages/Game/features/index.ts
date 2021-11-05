@@ -51,7 +51,7 @@ const draw = () => {
 }
 
 const render = () => {
-    if (jail.disappeared)
+    if (jail.hasDisappeared)
         world.drawWinScreen();
     
     else if (jail.isDestroyed)
