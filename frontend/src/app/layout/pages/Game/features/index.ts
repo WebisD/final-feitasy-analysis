@@ -1,6 +1,7 @@
 import World from "../models/world/world";
 import Player from "../models/player";
 import Merchant from '../models/merchant';
+import Princess from "../models/princess";
 
 import { getCanvasRef } from "../utils/references";
 import { createCharacterAsync } from "../transactions/transactions";
@@ -11,6 +12,7 @@ let ctx: CanvasRenderingContext2D;
 export let world: World;
 export let player: Player;
 export let merchant: Merchant;
+export let princess: Princess;
 
 const createPlayer = async (playerBreed: string, nickname: string) => {
     const playerId = await createCharacterAsync(playerBreed, nickname);
@@ -32,6 +34,7 @@ const draw = () => {
 
     world.draw();
     merchant.draw();
+    princess.draw();
     player.draw();
 
     if (!!world.enemies) 
@@ -51,6 +54,8 @@ export const run = (playerBreed: string, nickname: string) => {
     world = new World();
     merchant = new Merchant("001");
     
+    princess = new Princess("100");
+
     //Neo4j
     //createPlayer(playerBreed, nickname);
     player = new Player("007", playerBreed, nickname);
