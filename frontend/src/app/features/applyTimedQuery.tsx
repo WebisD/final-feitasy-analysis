@@ -19,13 +19,13 @@ import { player } from '../layout/pages/Game/features';
 
 const applyTimedQuery = (
     reRenderTime = 1000,
-    
 ) => {
 
     const loadData = async (query = `
-    ${!!player?.id 
-        ? `match (c:Character)-[r]->(n) where c.game_id='${player.id}'return c, r, n` 
-        : "MATCH (n)-[r]->(m) RETURN n,r,m"}
+        ${!!player?.id 
+            ? `match (c:Character)-[r]->(n) where c.game_id='${player.id}'return c, r, n` 
+            : "MATCH (n)-[r]->(m) RETURN n,r,m"
+        }
     `) => {
         
         const session = driver.session(); 

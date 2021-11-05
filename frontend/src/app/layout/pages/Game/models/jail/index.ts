@@ -3,6 +3,7 @@ import { princess, world } from "../../features";
 
 /* Sprite */
 import jailImage from "../../sprites/images/jail.png";
+import { deleteCharacterAsync } from "../../transactions/delete";
 import { hasCollision } from "../../utils/collision";
 
 /* Utils */
@@ -41,6 +42,7 @@ export default class Jail {
             if (!hasCollision(this, enemy))
                 return true;
             else{
+                deleteCharacterAsync(enemy.id);
                 if (this.life-- === 0)
                     this.gameOver(); 
                 return false;

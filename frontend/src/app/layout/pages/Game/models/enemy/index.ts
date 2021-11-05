@@ -21,7 +21,7 @@ export default class Enemy extends Character{
         super();
         this.breed = getRandomBreed();
         this.nickname = 'Enemy';
-        this.speed = _.random(0.05, 0.5, true);
+        this.speed = _.random(0.1, 0.5, true);
         this.getRandomEnemySprite()
 
         // Position

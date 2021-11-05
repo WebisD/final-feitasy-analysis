@@ -11,6 +11,7 @@ import { CharacterFrame} from "../../sprites/enums/characterFrames";
 /* Utils */
 import { hasCollision } from '../../utils/collision';
 import { createCharacterAsync } from "../../transactions/create";
+import { deleteCharacterAsync } from "../../transactions/delete";
 
 export default class Player extends Character {
     public score: number;
@@ -83,7 +84,8 @@ export default class Player extends Character {
                 if (!hasCollision(this, enemy))
                     return true;
                 else{
-                    this.score++; 
+                    this.score++;
+                    deleteCharacterAsync(enemy.id);
                     return false;
                 }
             });
