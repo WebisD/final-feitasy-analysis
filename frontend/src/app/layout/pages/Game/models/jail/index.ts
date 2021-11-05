@@ -1,5 +1,5 @@
 import { drawSprite } from "../../common/Sprite";
-import { player, world } from "../../features";
+import { player, world, princess } from "../../features";
 
 /* Sprite */
 import jailImage from "../../sprites/images/jail.png";
@@ -64,9 +64,11 @@ export default class Jail {
             }
         });
 
-        if (!aliveEnemies.length && !player.hasWon)
+        if (!aliveEnemies.length && !player.hasWon){
             player.hasWon = true;
-
+            princess.thanksFreedom();
+        }
+        
         world.enemies = aliveEnemies;
     };
 }
