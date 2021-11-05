@@ -21,7 +21,7 @@ export default class Jail {
     public sprite: HTMLImageElement = new Image();
 
     constructor() {
-        this.life = 2;
+        this.life = 5;
         this.isDestroyed = false;
         this.disappeared = false;
         this.disappearSpeed = 1.5;
@@ -63,6 +63,9 @@ export default class Jail {
                 return false;
             }
         });
+
+        if (!aliveEnemies.length && !player.hasWon)
+            player.hasWon = true;
 
         world.enemies = aliveEnemies;
     };
