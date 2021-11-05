@@ -7,7 +7,10 @@ interface IProps {
   selectedCharacter: string;
 }
 
-const Canvas: React.FC<IProps> = ({ selectedCharacter, nickname }) => {
+const Canvas: React.FC<IProps> = ({ 
+  selectedCharacter, 
+  nickname
+}) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {

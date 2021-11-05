@@ -17,9 +17,8 @@ import { CharacterFrame } from '../../sprites/enums/characterFrames';
 
 
 export default class Enemy extends Character{
-    constructor(id: string, x: number, y: number) {
+    constructor(x: number, y: number) {
         super();
-        this.id = id;
         this.breed = getRandomBreed();
         this.nickname = 'Enemy';
         this.speed = _.random(0.05, 0.5, true);
@@ -50,8 +49,8 @@ export default class Enemy extends Character{
                 sX: 96, sY: 96 
             }, 
             {
-                sprite: ifritImage,
-                sX: 80, sY: 80 
+                sprite: bahamutImage,
+                sX: 96, sY: 96 
             }, 
             {
                 sprite: ifritImage,

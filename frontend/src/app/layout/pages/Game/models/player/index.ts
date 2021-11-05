@@ -10,14 +10,14 @@ import { CharacterFrame} from "../../sprites/enums/characterFrames";
 
 /* Utils */
 import { hasCollision } from '../../utils/collision';
+import { createCharacterAsync } from "../../transactions/create";
 
 export default class Player extends Character {
     public score: number;
     public pausedGame: boolean;
     
-    constructor(id: string, breed: string, nickname: string) {
+    constructor(breed: string, nickname: string) {
         super();
-        this.id = id;
         this.breed = breed;
         this.nickname = nickname;
         this.score = 0;
@@ -34,6 +34,10 @@ export default class Player extends Character {
         window.addEventListener("keydown", this.move, false);
         window.addEventListener("keydown", this.pauseGame, false);
     }
+
+    public createPlayer = async () => {
+        this.id = await createCharacterAsync(this.breed, this.nickname);
+    };
 
     public move = (e?:KeyboardEvent) => {
         const pressed_key = e!.key.toUpperCase();

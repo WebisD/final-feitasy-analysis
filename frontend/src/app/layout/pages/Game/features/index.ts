@@ -5,7 +5,6 @@ import Princess from "../models/princess";
 import Jail from "../models/jail";
 
 import { getCanvasRef } from "../utils/references";
-import { createCharacterAsync } from "../transactions/transactions";
 
 let canvas: HTMLCanvasElement;
 let ctx: CanvasRenderingContext2D;
@@ -16,10 +15,7 @@ export let merchant: Merchant;
 export let princess: Princess;
 export let jail: Jail;
 
-const createPlayer = async (playerBreed: string, nickname: string) => {
-    const playerId = await createCharacterAsync(playerBreed, nickname);
-    //character = new Character(playerId, true, playerBreed, nickname);
-};
+
 
 const initializeCanvas = () => {
     canvas = getCanvasRef().canvas;
@@ -41,28 +37,45 @@ const draw = () => {
     player.draw();
 
 
-    if (!!world.enemies) 
+    if (!!world.enemies) {
         world.enemies.forEach(enemy => enemy.update());
+        jail.checkEnemyCollision();
+    }
 }
 
 const render = () => {
-    if (!!player && !player.pausedGame)
+    if (princess.dead){
+        // 
+    }
+
+    else if (!!player && !player.pausedGame)
         draw();
         
     window.requestAnimationFrame(render);
 } 
 
-export const run = (playerBreed: string, nickname: string) => {
+export const run = async (
+    playerBreed: string, 
+    nickname: string, 
+) => {
     initializeCanvas();
 
     world = new World();
-    merchant = new Merchant("001");
+    
+    player = new Player(playerBreed, nickname);
+    await player.createPlayer();
+
+    merchant = new Merchant();
+    await merchant.createMerchant();
+    
     jail = new Jail();
-    princess = new Princess("100");
+
+    princess = new Princess();
+    await princess.createPrincess();
+
 
     //Neo4j
     //createPlayer(playerBreed, nickname);
-    player = new Player("007", playerBreed, nickname);
 
     render();
 }

@@ -1,6 +1,8 @@
 import { driver } from "../../../../services/database/connection";
 import { v4 as newUuid } from 'uuid';
 
+import { player } from "../features";
+
 /* Random attributes */
 import { getRandomBreed } from "../models/character/attributes/breeds";
 import { getRandomClass } from "../models/character/attributes/class";
@@ -25,7 +27,8 @@ export const createCharacterAsync = async (
                         caption: ${ `'${nickname ?? 'Novo Character'}'`},
                         gender:'Male',
                         level: 1,
-                        color: '#5478dd'
+                        color: '#5478dd',
+                        game_id: '${player?.id ?? characterId}'
                     }
                 ) 
             `);
@@ -55,7 +58,8 @@ const createInventoryQuery = (characterId: string):string =>
             caption: 'Inventory',
             current_cap: 100,
             max_cap: 200,
-            color: '#bfc128'
+            color: '#bfc128',
+            game_id: '${player.id}'
         }
     )`;
 
@@ -74,7 +78,8 @@ const createBreedQuery = (
                 desc_class:'${breedName}',
                 caption: '${breedName}',
                 bonus_breed:10,
-                color: '#409c82'
+                color: '#409c82',
+                game_id: '${player.id}'
             }
         )
     `;

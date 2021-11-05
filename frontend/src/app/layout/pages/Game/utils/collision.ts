@@ -1,7 +1,8 @@
 import Character from "../models/character";
+import Jail from "../models/jail";
 
 export const hasCollision = (
-    entity1: Character, 
+    entity1: Character | Jail, 
     entity2: Character
 ) => 
     entity1.x < entity2.x + entity2.width &&

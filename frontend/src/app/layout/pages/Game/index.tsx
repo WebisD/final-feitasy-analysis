@@ -98,7 +98,10 @@ const Game: React.FC = () => {
 
                 </div>
 
-            : <Canvas selectedCharacter={selectedCharacter!} nickname={playerName!}/>
+            : <Canvas 
+                selectedCharacter={selectedCharacter!} 
+                nickname={playerName!}
+            />
         }
         </div>
     )
