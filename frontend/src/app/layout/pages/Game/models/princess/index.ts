@@ -8,13 +8,10 @@ import { getCanvasRef } from "../../utils/references";
 import { createCharacterAsync } from "../../transactions/create";
 
 export default class Princess extends Character {
-    public dead: boolean;
-
     constructor() {
         super();
         this.breed = "Humano";
         this.nickname = "Princess";
-        this.dead = false;
         this.sprite.src = princessImage;
 
         // Position
@@ -25,6 +22,8 @@ export default class Princess extends Character {
     public createPrincess = async () => {
         this.id = await createCharacterAsync(this.breed, this.nickname);
     };
+
+    public thanksFreedom = () => alert("Princesa: Agora eu estou livre!!!")
 
     protected move = () => {
 

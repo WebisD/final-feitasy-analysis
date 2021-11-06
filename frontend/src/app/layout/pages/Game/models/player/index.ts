@@ -1,6 +1,6 @@
 import Character from "../character";
 import Breeds from'../character/attributes/breeds';
-import { world, merchant } from "../../features";
+import { world, merchant, princess } from "../../features";
 
 /* Sprites */
 import warriorImage from '../../sprites/images/warrior.png';
@@ -16,12 +16,14 @@ import { deleteCharacterAsync } from "../../transactions/delete";
 export default class Player extends Character {
     public score: number;
     public pausedGame: boolean;
+    public hasWon: boolean;
     
     constructor(breed: string, nickname: string) {
         super();
         this.breed = breed;
         this.nickname = nickname;
         this.score = 0;
+        this.hasWon = false;
         this.pausedGame = false;
 
         if(breed === Breeds.Guerreiro)
@@ -82,8 +84,8 @@ export default class Player extends Character {
     };
 
     private killEnemies = () => {
-        if(!!world.enemies) {
-            world.enemies = world.enemies.filter(enemy => { 
+        if(!!world.enemies && world.enemies.length) {
+            const aliveEnemies = world.enemies.filter(enemy => { 
                 if (!hasCollision(this, enemy))
                     return true;
                 else{
@@ -92,6 +94,13 @@ export default class Player extends Character {
                     return false;
                 }
             });
+
+            if (!aliveEnemies.length){
+                this.hasWon = true;
+                princess.thanksFreedom();
+            }
+
+            world.enemies = aliveEnemies;
         }
     };
 

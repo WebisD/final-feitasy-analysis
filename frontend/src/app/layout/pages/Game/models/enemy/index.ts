@@ -14,6 +14,7 @@ import bahamutImage from '../../sprites/images/bahamut.png';
 
 // Utils
 import { CharacterFrame } from '../../sprites/enums/characterFrames';
+import { createCharacterAsync } from '../../transactions/create';
 
 
 export default class Enemy extends Character{
@@ -27,13 +28,17 @@ export default class Enemy extends Character{
         super();
         this.breed = getRandomBreed();
         this.nickname = 'Enemy';
-        this.speed = _.random(0.1, 0.5, true);
+        this.speed = _.random(0.5, 0.5, true);
         this.getRandomEnemySprite()
 
         // Position
         this.x = x
         this.y = y
     }
+
+    public createEnemy = async () => {
+        this.id = await createCharacterAsync(this.breed, this.nickname);
+    };
 
     public update = () => {
         this.draw();

@@ -1,5 +1,6 @@
+import IDrawable from "../../common/IDrawable";
 import { drawSprite } from "../../common/Sprite";
-import { princess, world } from "../../features";
+import { player, world, princess } from "../../features";
 
 /* Sprite */
 import jailImage from "../../sprites/images/jail.png";
@@ -9,17 +10,22 @@ import { hasCollision } from "../../utils/collision";
 /* Utils */
 import { getCanvasRef } from "../../utils/references";
 
-export default class Jail {
+export default class Jail implements IDrawable {
     public width: number;
     public height: number;
     public x: number;
     public y: number;
     public life: number;
+    public isDestroyed: boolean;
+    public hasDisappeared: boolean;
+    public disappearSpeed: number;
     public sprite: HTMLImageElement = new Image();
 
-    constructor(){
-        this.life = 5;
-
+    constructor() {
+        this.life = 2;
+        this.isDestroyed = false;
+        this.hasDisappeared = false;
+        this.disappearSpeed = 1.5;
         this.sprite.src = jailImage;
 
         /* Size */
@@ -32,21 +38,38 @@ export default class Jail {
     };
 
     public draw = () => {
+        this.disappearIfWin();
         drawSprite(this.sprite, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
     };
 
-    public gameOver = () => princess.dead = true;
+    public disappearIfWin = () => {
+        if (player.hasWon){
+            if (this.y + this.height > 0)
+                this.y -= this.disappearSpeed;
+            else
+                this.hasDisappeared = true;
+        }
+    }
+
+    public gameOver = () => this.isDestroyed = true;
 
     public checkEnemyCollision = () => {
-        world.enemies = world.enemies.filter(enemy => { 
+        const aliveEnemies = world.enemies.filter(enemy => { 
             if (!hasCollision(this, enemy))
                 return true;
             else{
                 deleteCharacterAsync(enemy.id);
-                if (this.life-- === 0)
+                if (--this.life === 0)
                     this.gameOver(); 
                 return false;
             }
         });
+
+        if (!aliveEnemies.length && !player.hasWon){
+            player.hasWon = true;
+            princess.thanksFreedom();
+        }
+        
+        world.enemies = aliveEnemies;
     };
 }
