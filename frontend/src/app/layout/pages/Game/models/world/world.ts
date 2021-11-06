@@ -2,7 +2,7 @@ import _ from "lodash";
 
 /* Entities */
 import IDrawable from "../../common/IDrawable";
-import { player } from "../../features";
+import { jail, player } from "../../features";
 import Enemy from '../enemy';
 
 /* Utils */
@@ -13,6 +13,7 @@ import mapBackground from '../../sprites/images/world.png';
 import winImage from '../../sprites/screens/you-win.jpg';
 import lostImage from '../../sprites/screens/game-over.png';
 import scoreImage from '../../sprites/images/score.png';
+import heartImage from '../../sprites/images/heart.png';
 
 export default class World implements IDrawable {
 
@@ -25,6 +26,7 @@ export default class World implements IDrawable {
     // Sprites
     public mapBackground: HTMLImageElement = new Image();
     public scoreSprite: HTMLImageElement = new Image();
+    public heartSprite: HTMLImageElement = new Image();
 
     // Screens
     public winScreen: HTMLImageElement = new Image();
@@ -37,6 +39,7 @@ export default class World implements IDrawable {
         this.mapBackground.src = mapBackground;
         this.lostScreen.src = lostImage;
         this.scoreSprite.src = scoreImage;
+        this.heartSprite.src = heartImage;
 
         this.winScreen.src = winImage;
     }
@@ -51,6 +54,7 @@ export default class World implements IDrawable {
 
         this.drawMap();
         this.drawScore();
+        this.drawLife();
     };
 
     public drawScore = () => {
@@ -60,6 +64,14 @@ export default class World implements IDrawable {
         ctx.font = "30px Roboto";
         ctx.drawImage(this.scoreSprite, canvas.width/3, 0, 200, 50);
         ctx.fillText("" + player.score, canvas.width/3 + 200, 35);
+    }
+
+    public drawLife = () => {
+        const { canvas, ctx } = getCanvasRef();
+
+        for(var i = 0; i < jail.life; i++){
+            ctx.drawImage(this.heartSprite, canvas.width/2.25 + (i*70), canvas.height/2 - 200, 50, 50);
+        }
     }
 
     public drawWinScreen = () => {
