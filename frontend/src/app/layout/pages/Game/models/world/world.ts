@@ -105,7 +105,7 @@ export default class World implements IDrawable {
         for(let i = 0; i < enemiesAmount; i++){
             const randomCoordsX =
                 _.sample([
-                    _.random(-offset, canvas.width/6)
+                    _.random(2.5*-offset, canvas.width/6)
                 ])!
 
             const randomCoordsY = _.random(-offset, canvas.height + offset);
