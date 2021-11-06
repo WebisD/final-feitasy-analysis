@@ -96,7 +96,7 @@ export default class World implements IDrawable {
     public generateEnemies = async () => {
         const { canvas } = getCanvasRef();
 
-        const [minEnemiesAmount, maxEnemiesAmount] = [7, 14]; // Max enemies range
+        const [minEnemiesAmount, maxEnemiesAmount] = [5, 10]; // Max enemies range
         const offset = 100;
 
         const enemiesList: Enemy[] = [];
