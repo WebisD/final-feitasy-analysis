@@ -1,6 +1,6 @@
 import Character from "../character";
 import Breeds from'../character/attributes/breeds';
-import { world, merchant, princess } from "../../features";
+import { world, merchant, princess, jail } from "../../features";
 
 /* Sprites */
 import warriorImage from '../../sprites/images/warrior.png';
@@ -17,7 +17,7 @@ export default class Player extends Character {
     public score: number;
     public pausedGame: boolean;
     public hasWon: boolean;
-    
+
     constructor(breed: string, nickname: string) {
         super();
         this.breed = breed;
@@ -59,16 +59,37 @@ export default class Player extends Character {
             if (pressed_key === 'A' && this.x > world.leftLimit){
                 this.x -= this.speed;
                 this.currentDirection = CharacterFrame.LEFT_DIRECTION;
+                
+                this.frameY = CharacterFrame.LEFT_DIRECTION;
+
+                if(hasCollision(jail, this) || hasCollision(merchant, this)){
+                    this.x += this.speed;
+                    this.frameY = CharacterFrame.LEFT_DIRECTION;
+                }
             }
 
             else if (pressed_key === 'D' && this.x < world.rightLimit - this.width*2){
                 this.x += this.speed;
+                
                 this.currentDirection = CharacterFrame.RIGHT_DIRECTION;
+
+                this.frameY = CharacterFrame.RIGHT_DIRECTION;
+                if(hasCollision(jail, this) || hasCollision(merchant, this)){
+                    this.x -= this.speed;
+                    this.frameY = CharacterFrame.RIGHT_DIRECTION;
+                }
             }
 
             else if (pressed_key === 'S' && this.y < world.bottomLimit - this.height*2){
                 this.y += this.speed;
+
                 this.currentDirection = CharacterFrame.DOWN_DIRECTION;
+                
+                this.frameY = CharacterFrame.DOWN_DIRECTION;
+                if(hasCollision(jail, this) || hasCollision(merchant, this)){
+                    this.y -= this.speed;
+                    this.frameY = CharacterFrame.DOWN_DIRECTION;
+                }
             }
 
             else if (pressed_key === 'W' && this.y > world.topLimit){
@@ -77,6 +98,14 @@ export default class Player extends Character {
             }
             else if (pressed_key === 'K') {
                 world.generateEnemies()
+                
+                this.frameY = CharacterFrame.UP_DIRECTION;
+                
+                if(hasCollision(jail, this) || hasCollision(merchant, this)){
+                    this.y += this.speed;
+                    this.frameY = CharacterFrame.UP_DIRECTION;
+                }
+
             }
 
             this.handleCharacterFrame();
@@ -85,7 +114,7 @@ export default class Player extends Character {
 
     private killEnemies = () => {
         if(!!world.enemies && world.enemies.length) {
-            const aliveEnemies = world.enemies.filter(enemy => { 
+            const aliveEnemies = world.enemies.filter(enemy => {
                 if (!hasCollision(this, enemy))
                     return true;
                 else{
@@ -116,4 +145,4 @@ export default class Player extends Character {
         }
     };
 
-} 
+}
