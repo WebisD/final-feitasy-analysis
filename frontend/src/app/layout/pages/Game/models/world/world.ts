@@ -15,7 +15,7 @@ import lostImage from '../../sprites/screens/game-over.png';
 import scoreImage from '../../sprites/images/score.png';
 
 export default class World implements IDrawable {
-    
+
     // Map limits
     public leftLimit:number;
     public topLimit:number;
@@ -37,7 +37,7 @@ export default class World implements IDrawable {
         this.mapBackground.src = mapBackground;
         this.lostScreen.src = lostImage;
         this.scoreSprite.src = scoreImage;
-    
+
         this.winScreen.src = winImage;
     }
 
@@ -84,21 +84,21 @@ export default class World implements IDrawable {
     public generateEnemies = async () => {
         const { canvas } = getCanvasRef();
 
-        const [minEnemiesAmount, maxEnemiesAmount] = [3, 3]; // Max enemies range
+        const [minEnemiesAmount, maxEnemiesAmount] = [7, 14]; // Max enemies range
         const offset = 100;
 
         const enemiesList: Enemy[] = [];
         const enemiesAmount = _.random(minEnemiesAmount, maxEnemiesAmount, false);
 
         for(let i = 0; i < enemiesAmount; i++){
-            const randomCoordsX = 
+            const randomCoordsX =
                 _.sample([
-                    _.random(-offset, 0), 
+                    _.random(-offset, 0),
                     _.random(canvas.width, canvas.width + offset)
                 ])!
 
             const randomCoordsY = _.random(-offset, canvas.height + offset);
-            
+
             const newEnemy = new Enemy(randomCoordsX, randomCoordsY);
             await newEnemy.createEnemy();
 

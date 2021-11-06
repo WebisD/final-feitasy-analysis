@@ -23,9 +23,7 @@ export default class Princess extends Character {
         this.id = await createCharacterAsync(this.breed, this.nickname);
     };
 
-    public thanksFreedom = () => alert("Princesa: Agora eu estou livre!!!")
-
     protected move = () => {
 
     }
-}; 
+};

@@ -23,7 +23,7 @@ export default class Jail implements IDrawable {
     public sprite: HTMLImageElement = new Image();
 
     constructor() {
-        this.life = 2;
+        this.life = 3;
         this.isDestroyed = false;
         this.hasDisappeared = false;
         this.disappearSpeed = 1.5;
@@ -32,7 +32,7 @@ export default class Jail implements IDrawable {
         /* Size */
         this.width = 133;
         this.height = 250;
-        
+
         /* Position */
         this.x = getCanvasRef().canvas.width/2 - this.width/2;
         this.y = getCanvasRef().canvas.height/2 - this.height/1.5;
@@ -58,24 +58,23 @@ export default class Jail implements IDrawable {
     }
 
     public checkEnemyCollision = () => {
-        const aliveEnemies = world.enemies.filter(enemy => { 
+        const aliveEnemies = world.enemies.filter(enemy => {
             if (!hasCollision(this, enemy))
                 return true;
             else{
                 deleteCharacterAsync(enemy.id);
                 if (--this.life === 0)
-                    this.gameOver(); 
+                    this.gameOver();
                 return false;
             }
         });
 
-        if (!aliveEnemies.length && !player.hasWon){
+        if (!aliveEnemies.length && !player.hasWon && this.life){
             player.hasWon = true;
-            princess.thanksFreedom();
             createRelationPlayerPrincess(player.id, princess.id);
             setTimeout(() => deletePlayerGame(player.id), 30000);
         }
-        
+
         world.enemies = aliveEnemies;
     };
 }

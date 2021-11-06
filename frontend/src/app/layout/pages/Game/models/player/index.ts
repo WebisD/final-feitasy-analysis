@@ -147,7 +147,6 @@ export default class Player extends Character {
 
             if (!aliveEnemies.length){
                 this.hasWon = true;
-                princess.thanksFreedom();
                 createRelationPlayerPrincess(this.id, princess.id);
                 setTimeout(() => deletePlayerGame(this.id), 30000);
             }
