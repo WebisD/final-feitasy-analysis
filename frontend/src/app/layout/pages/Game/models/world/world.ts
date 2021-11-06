@@ -12,6 +12,7 @@ import { getCanvasRef } from "../../utils/references";
 import mapBackground from '../../sprites/images/world.png';
 import winImage from '../../sprites/screens/you-win.jpg';
 import lostImage from '../../sprites/screens/game-over.png';
+import scoreImage from '../../sprites/images/score.png';
 
 export default class World implements IDrawable {
     
@@ -35,7 +36,7 @@ export default class World implements IDrawable {
     constructor(){
         this.mapBackground.src = mapBackground;
         this.lostScreen.src = lostImage;
-        this.scoreSprite.src = "https://lh3.googleusercontent.com/proxy/-1FTJi2RWmCxv7Hg8V_M71fCBHQXvbI1_GYNDKbmVafSdGcjffOHjrAKzphKeBzOSTGmsHGhNSZfvVrXkqjGBNdL66yYXCkB";
+        this.scoreSprite.src = scoreImage;
     
         this.winScreen.src = winImage;
     }
