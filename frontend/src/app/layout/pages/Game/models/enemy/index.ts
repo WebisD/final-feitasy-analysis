@@ -18,6 +18,12 @@ import { createCharacterAsync } from '../../transactions/create';
 
 
 export default class Enemy extends Character{
+    private xDistanceFromTarget: number = 0;
+    private yDistanceFromTarget: number = 0;
+    private changeDirection: boolean = true;
+    private directionCount: number = 0;
+    private directionCountLimit: number = 30;
+
     constructor(x: number, y: number) {
         super();
         this.breed = getRandomBreed();
@@ -43,53 +49,101 @@ export default class Enemy extends Character{
         const randomSprite = _.sample([
             {
                 sprite: titanImage,
-                sX: 40, sY: 56 
+                sX: 40, sY: 56 ,
+                frameLimit: 3,
+                frameRatio: 6,
+                speed: 6
             }, 
             {
                 sprite: odinImage,
-                sX: 80, sY: 80 
+                sX: 80, sY: 80,
+                frameLimit: 3,
+                frameRatio: 6,
+                speed: 6
             }, 
             {
                 sprite: leviathanImage,
-                sX: 96, sY: 96 
-            }, 
-            {
-                sprite: bahamutImage,
-                sX: 96, sY: 96 
+                sX: 96, sY: 96,
+                frameLimit: 3,
+                frameRatio: 6,
+                speed: 6 
             }, 
             {
                 sprite: ifritImage,
-                sX: 80, sY: 80 
-            }, 
+                sX: 80, sY: 80,
+                frameLimit: 3,
+                frameRatio: 6,
+                speed: 10
+            }   
         ])!;
 
         this.sprite.src = randomSprite.sprite;
         this.width = randomSprite.sX;
         this.height = randomSprite.sY;
+        this.frameLimit = randomSprite.frameLimit;
+        this.frameRatio = randomSprite.frameRatio;
+        this.speed = randomSprite.speed;
     };
 
     protected move = (e?: KeyboardEvent) => {
-        const distanceJailX = jail.x - this.x;
-        const distanceJailY = jail.y - this.y;
+        this.xDistanceFromTarget = jail.x - this.x;
+        this.yDistanceFromTarget = jail.y - this.y;
 
         if (!player.pausedGame){
-            if (distanceJailX > 0) {
-                this.x += this.speed;
-                this.frameY = CharacterFrame.RIGHT_DIRECTION;
-            } else {
-                this.x -= this.speed;
-                this.frameY = CharacterFrame.LEFT_DIRECTION;
+            if (
+                this.xDistanceFromTarget >= jail.x - this.distanceThreshold && this.xDistanceFromTarget <= jail.x + this.distanceThreshold
+                && this.yDistanceFromTarget >= jail.y - this.distanceThreshold && this.yDistanceFromTarget <= jail.y + this.distanceThreshold
+            ){
+                //attack
+                return;
             }
 
-            if (distanceJailY > 0) {
-                this.y += this.speed
-                //this.frameY = CharacterFrame.DOWN_DIRECTION;
-            } else {
-                this.y -= this.speed
-                //this.frameY = CharacterFrame.UP_DIRECTION;
+            if (this.xDistanceFromTarget > this.yDistanceFromTarget && !this.changeDirection) {
+                this.directionCount++;
+                this.changeDirection = false;
+
+                if (this.directionCount == this.directionCountLimit) {
+                    this.changeDirection = true;
+                    this.directionCount = 0;
+                }
+
+                if (this.xDistanceFromTarget > this.distanceThreshold) {
+                    this.x += this.speed;
+                    this.currentDirection = CharacterFrame.RIGHT_DIRECTION;
+                }
+                else {
+                    if (this.xDistanceFromTarget > 0){
+                        console.log(`LEFT - ${this.id}`);
+                    }
+                    this.x -= this.speed;
+                    this.currentDirection = CharacterFrame.LEFT_DIRECTION;
+                }
+            }
+            else if (this.changeDirection){
+                if (this.yDistanceFromTarget >= jail.y - this.distanceThreshold && this.yDistanceFromTarget <= jail.y + this.distanceThreshold) {
+                    this.changeDirection = false;
+                    this.directionCount = 0;
+                    return;
+                }
+
+                this.directionCount++;
+
+                if (this.directionCount == this.directionCountLimit) {
+                    this.changeDirection = false;
+                    this.directionCount = 0;
+                }
+
+                if (this.yDistanceFromTarget + this.distanceThreshold > 0) {
+                    this.y += this.speed;
+                    this.currentDirection = CharacterFrame.DOWN_DIRECTION;
+                }
+                else {
+                    this.y -= this.speed;
+                    this.currentDirection = CharacterFrame.UP_DIRECTION;
+                }
             }
 
-            this.handleCharacterFrame();
+            this.handleCharacterFrame();    
         }
     };
 }

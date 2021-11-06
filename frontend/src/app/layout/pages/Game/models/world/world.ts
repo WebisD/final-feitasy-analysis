@@ -3,6 +3,7 @@ import _ from "lodash";
 /* Entities */
 import IDrawable from "../../common/IDrawable";
 import { player } from "../../features";
+import { createCharacterAsync} from "../../transactions/create";
 import Enemy from '../enemy';
 
 /* Utils */

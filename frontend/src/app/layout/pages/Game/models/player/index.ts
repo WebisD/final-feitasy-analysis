@@ -56,11 +56,14 @@ export default class Player extends Character {
         // Kills the colliding enemies
         this.killEnemies();
 
-        if (['W', 'A', 'S', 'D'].includes(pressed_key) && !this.pausedGame){
+        if (['W', 'A', 'S', 'D', 'K'].includes(pressed_key) && !this.pausedGame){
 
             if (pressed_key === 'A' && this.x > world.leftLimit){
                 this.x -= this.speed;
+                this.currentDirection = CharacterFrame.LEFT_DIRECTION;
+                
                 this.frameY = CharacterFrame.LEFT_DIRECTION;
+
                 if(hasCollision(jail, this) || hasCollision(merchant, this)){
                     this.x += this.speed;
                     this.frameY = CharacterFrame.LEFT_DIRECTION;
@@ -69,6 +72,9 @@ export default class Player extends Character {
 
             else if (pressed_key === 'D' && this.x < world.rightLimit - this.width*2){
                 this.x += this.speed;
+                
+                this.currentDirection = CharacterFrame.RIGHT_DIRECTION;
+
                 this.frameY = CharacterFrame.RIGHT_DIRECTION;
                 if(hasCollision(jail, this) || hasCollision(merchant, this)){
                     this.x -= this.speed;
@@ -78,6 +84,9 @@ export default class Player extends Character {
 
             else if (pressed_key === 'S' && this.y < world.bottomLimit - this.height*2){
                 this.y += this.speed;
+
+                this.currentDirection = CharacterFrame.DOWN_DIRECTION;
+                
                 this.frameY = CharacterFrame.DOWN_DIRECTION;
                 if(hasCollision(jail, this) || hasCollision(merchant, this)){
                     this.y -= this.speed;
@@ -87,7 +96,13 @@ export default class Player extends Character {
 
             else if (pressed_key === 'W' && this.y > world.topLimit){
                 this.y -= this.speed;
+                this.currentDirection = CharacterFrame.UP_DIRECTION;
+            }
+            else if (pressed_key === 'K') {
+                world.generateEnemies()
+                
                 this.frameY = CharacterFrame.UP_DIRECTION;
+                
                 if(hasCollision(jail, this) || hasCollision(merchant, this)){
                     this.y += this.speed;
                     this.frameY = CharacterFrame.UP_DIRECTION;
@@ -106,7 +121,7 @@ export default class Player extends Character {
                     return true;
                 else{
                     this.score++;
-                    deleteCharacterAsync(enemy.id);
+                    // deleteCharacterAsync(enemy.id);
                     return false;
                 }
             });

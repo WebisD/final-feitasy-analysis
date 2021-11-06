@@ -22,7 +22,7 @@ export default class Jail implements IDrawable {
     public sprite: HTMLImageElement = new Image();
 
     constructor() {
-        this.life = 2;
+        this.life = 999;
         this.isDestroyed = false;
         this.hasDisappeared = false;
         this.disappearSpeed = 1.5;
@@ -58,8 +58,8 @@ export default class Jail implements IDrawable {
             if (!hasCollision(this, enemy))
                 return true;
             else{
-                deleteCharacterAsync(enemy.id);
-                if (--this.life === 0)
+                // deleteCharacterAsync(enemy.id);
+                if (this.life-- === 0)
                     this.gameOver(); 
                 return false;
             }
