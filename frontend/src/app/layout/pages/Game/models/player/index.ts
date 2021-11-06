@@ -17,6 +17,7 @@ export default class Player extends Character {
     public score: number;
     public pausedGame: boolean;
     public hasWon: boolean;
+    public merchantCollision: boolean;
 
     constructor(breed: string, nickname: string) {
         super();
@@ -25,6 +26,7 @@ export default class Player extends Character {
         this.score = 0;
         this.hasWon = false;
         this.pausedGame = false;
+        this.merchantCollision = false;
 
         if(breed === Breeds.Guerreiro)
             this.sprite.src = warriorImage
@@ -33,7 +35,7 @@ export default class Player extends Character {
         else
             this.sprite.src = archerImage
 
-        
+
     }
 
     public createPlayer = async () => {
@@ -47,8 +49,7 @@ export default class Player extends Character {
         const pressed_key = e!.key.toUpperCase();
 
         // Interacts with merchant if collides
-        if(this.x + 20 < merchant.x + merchant.width && this.x + 20 + this.width > merchant.x &&
-            this.y + 20 < merchant.y + merchant.height && this.y + 20 + this.height > merchant.y){
+        if(this.merchantCollision){
             if (pressed_key === 'ENTER')
                 this.interactWithMerchant();
         }
@@ -61,38 +62,71 @@ export default class Player extends Character {
             if (pressed_key === 'A' && this.x > world.leftLimit){
                 this.x -= this.speed;
                 this.frameY = CharacterFrame.LEFT_DIRECTION;
-                if(hasCollision(jail, this) || hasCollision(merchant, this)){
+
+                this.frameY = CharacterFrame.LEFT_DIRECTION;
+                if(hasCollision(jail, this)){
                     this.x += this.speed;
                     this.frameY = CharacterFrame.LEFT_DIRECTION;
+                }
+                if (hasCollision(merchant, this)){
+                    this.merchantCollision = true;
+                    this.x += this.speed;
+                    this.frameY = CharacterFrame.LEFT_DIRECTION;
+                }
+                else{
+                    this.merchantCollision = false;
                 }
             }
 
             else if (pressed_key === 'D' && this.x < world.rightLimit - this.width*2){
                 this.x += this.speed;
                 this.frameY = CharacterFrame.RIGHT_DIRECTION;
-                if(hasCollision(jail, this) || hasCollision(merchant, this)){
+                if(hasCollision(jail, this)){
                     this.x -= this.speed;
                     this.frameY = CharacterFrame.RIGHT_DIRECTION;
+                }
+                if (hasCollision(merchant, this)){
+                    this.merchantCollision = true;
+                    this.x -= this.speed;
+                    this.frameY = CharacterFrame.RIGHT_DIRECTION;
+                }
+                else{
+                    this.merchantCollision = false;
                 }
             }
 
             else if (pressed_key === 'S' && this.y < world.bottomLimit - this.height*2){
                 this.y += this.speed;
                 this.frameY = CharacterFrame.DOWN_DIRECTION;
-                if(hasCollision(jail, this) || hasCollision(merchant, this)){
+                if(hasCollision(jail, this)){
                     this.y -= this.speed;
                     this.frameY = CharacterFrame.DOWN_DIRECTION;
+                }
+                if (hasCollision(merchant, this)){
+                    this.merchantCollision = true;
+                    this.y -= this.speed;
+                    this.frameY = CharacterFrame.DOWN_DIRECTION;
+                }
+                else{
+                    this.merchantCollision = false;
                 }
             }
 
             else if (pressed_key === 'W' && this.y > world.topLimit){
                 this.y -= this.speed;
                 this.frameY = CharacterFrame.UP_DIRECTION;
-                if(hasCollision(jail, this) || hasCollision(merchant, this)){
+                if(hasCollision(jail, this)){
                     this.y += this.speed;
                     this.frameY = CharacterFrame.UP_DIRECTION;
                 }
-
+                if (hasCollision(merchant, this)){
+                    this.merchantCollision = true;
+                    this.y += this.speed;
+                    this.frameY = CharacterFrame.UP_DIRECTION;
+                }
+                else{
+                    this.merchantCollision = false;
+                }
             }
 
             this.handleCharacterFrame();
