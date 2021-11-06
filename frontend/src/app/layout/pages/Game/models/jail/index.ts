@@ -23,7 +23,7 @@ export default class Jail implements IDrawable {
     public sprite: HTMLImageElement = new Image();
 
     constructor() {
-        this.life = 2;
+        this.life = 3;
         this.isDestroyed = false;
         this.hasDisappeared = false;
         this.disappearSpeed = 1.5;
