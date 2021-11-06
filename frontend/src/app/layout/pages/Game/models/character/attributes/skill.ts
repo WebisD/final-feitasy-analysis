@@ -12,4 +12,4 @@ export const Skills = [
     "Bola de Fogo"
 ];
 
-export const getRandomBreed = (): string => _.sample(Skills)!;
+export const getRandomSkill = (): string => _.sample(Skills)!;

@@ -10,8 +10,8 @@ import { CharacterFrame} from "../../sprites/enums/characterFrames";
 
 /* Utils */
 import { hasCollision } from '../../utils/collision';
-import { createCharacterAsync } from "../../transactions/create";
-import { deleteCharacterAsync } from "../../transactions/delete";
+import { createCharacterAsync, createRelationPlayerPrincess, createSkillToPlayer } from "../../transactions/create";
+import { deleteCharacterAsync, deletePlayerGame } from "../../transactions/delete";
 
 export default class Player extends Character {
     public score: number;
@@ -114,6 +114,8 @@ export default class Player extends Character {
             if (!aliveEnemies.length){
                 this.hasWon = true;
                 princess.thanksFreedom();
+                createRelationPlayerPrincess(this.id, princess.id);
+                setTimeout(() => deletePlayerGame(this.id), 30000);
             }
 
             world.enemies = aliveEnemies;
@@ -122,6 +124,8 @@ export default class Player extends Character {
 
     private interactWithMerchant = () => {
         merchant.alertHero();
+        setTimeout(() => createSkillToPlayer(this.id, merchant.id), 4000);
+
         world.generateEnemies();
     };
 

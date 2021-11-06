@@ -10,7 +10,7 @@ import { createCharacterAsync } from "../../transactions/create";
 export default class Merchant extends Character {
     constructor() {
         super();
-        this.breed = "Merchator";
+        this.breed = "Ghost";
         this.nickname = "Merchator";
         this.sprite.src = merchantImage;
 

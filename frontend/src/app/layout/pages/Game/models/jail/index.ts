@@ -4,7 +4,8 @@ import { player, world, princess } from "../../features";
 
 /* Sprite */
 import jailImage from "../../sprites/images/jail.png";
-import { deleteCharacterAsync } from "../../transactions/delete";
+import { createRelationPlayerPrincess } from "../../transactions/create";
+import { deleteCharacterAsync, deletePlayerGame } from "../../transactions/delete";
 import { hasCollision } from "../../utils/collision";
 
 /* Utils */
@@ -51,7 +52,10 @@ export default class Jail implements IDrawable {
         }
     }
 
-    public gameOver = () => this.isDestroyed = true;
+    public gameOver = () => {
+        this.isDestroyed = true;
+        setTimeout(() => deletePlayerGame(player.id), 30000);
+    }
 
     public checkEnemyCollision = () => {
         const aliveEnemies = world.enemies.filter(enemy => { 
@@ -68,6 +72,8 @@ export default class Jail implements IDrawable {
         if (!aliveEnemies.length && !player.hasWon){
             player.hasWon = true;
             princess.thanksFreedom();
+            createRelationPlayerPrincess(player.id, princess.id);
+            setTimeout(() => deletePlayerGame(player.id), 30000);
         }
         
         world.enemies = aliveEnemies;
