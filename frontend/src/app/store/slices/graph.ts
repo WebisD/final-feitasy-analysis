@@ -8,13 +8,15 @@ export interface IGraphState{
     edges: IEdge[];
     activeEntity: INode | IEdge | undefined;
     showInfoTable: boolean;
+    isPlaying: boolean;
 };
 
 const initialState: IGraphState = {
     nodes: [],
     edges: [],
     activeEntity: undefined,
-    showInfoTable: true
+    showInfoTable: true,
+    isPlaying: false
 };
 
 const GraphReducer = createSlice({
@@ -32,6 +34,9 @@ const GraphReducer = createSlice({
     },
     setInfoTableVisible(state, action: PayloadAction<boolean>){
       state.showInfoTable = action.payload;
+    },
+    setIsPlaying(state, action: PayloadAction<boolean>){
+      state.isPlaying = action.payload;
     }
   },
 });

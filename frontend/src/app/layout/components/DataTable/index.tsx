@@ -37,7 +37,7 @@ const DataTable: React.FC = () => {
                     {Object.entries(activeEntity || {}).map(([ field, value ], id) =>
 
                         field !== "id" && field !== "label" 
-                        //&& field !== "to" && field !== "from"
+                        && field !== "color" && field !== "game_id"
                         ?
                             <tr key={id}>
                                 <td>{field}</td>

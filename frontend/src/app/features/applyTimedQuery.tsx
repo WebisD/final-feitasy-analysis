@@ -13,27 +13,34 @@ import { setEdges, setNodes } from '../store/dispatches';
 /* Utils */
 import { mapEdgeResultToVis, mapNodesResultToVis } from '../utils/mappers';
 
+/* Game */
+import { player } from '../layout/pages/Game/features';
+
 
 const applyTimedQuery = (
-    query = "MATCH (n)-[r]->(m) RETURN n,r,m", 
-    reRenderTime = 1000
+    reRenderTime = 1000,
 ) => {
 
-    const loadData = async () => {
+    const loadData = async (query = `
+        ${!!player?.id 
+            ? `match (c:Character)-[r]->(n) where c.game_id='${player.id}'return c, r, n` 
+            : "MATCH (n)-[r]->(m) RETURN n,r,m"
+        }
+    `) => {
         
         const session = driver.session(); 
         
         try {
-            
+                
             const res = await session.run(query);
-            
+
             const mappedResult = 
                 res.records.map(record => record.map(collection => collection)).map(entity => ({
                     node: entity[0],
                     relationship: entity[1],
                     neighbor_node: entity[2] 
                 }));
-            
+
             const nodesArr: INode[] = [];
             const edgesArr: IEdge[] = [];
             

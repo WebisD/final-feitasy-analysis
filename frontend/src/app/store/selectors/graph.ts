@@ -13,6 +13,8 @@ export const edgesSelector = (state: AppState) => state.graph.edges;
 
 export const isDataTableVisibleSelector = (state: AppState) => state.graph.showInfoTable;
 
+export const isPlayingSelector = (state: AppState) => state.graph.isPlaying;
+
 export const graphSelector = createSelector(
     [nodesSelector, edgesSelector],
     (nodes, edges): IGraph => {

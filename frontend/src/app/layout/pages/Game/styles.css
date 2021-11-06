@@ -1,0 +1,39 @@
+.game-wrapper, .select-character{
+    height: 100%;
+    width: 100%;
+    border: 1px solid #cecccd;
+}
+
+.game-wrapper .player-cards{
+    gap: 10px;
+}
+
+.game-wrapper .player-cards button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    box-sizing: border-box;
+}
+.game-wrapper .player-cards button h5{
+    padding: 0;
+}
+
+.game-wrapper .player-name-field,.game-wrapper .btn-play{
+    width: 470px;
+}
+
+.game-wrapper .player-name-field {
+    margin-bottom: 1em;
+}
+
+.game-wrapper .btn-play {
+    margin-top: 1em;
+}
+
+
+.game-wrapper{
+    position: relative;
+}
