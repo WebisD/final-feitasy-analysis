@@ -83,10 +83,10 @@ export default class Enemy extends Character{
 
             if (distanceJailY > 0) {
                 this.y += this.speed
-                this.frameY = CharacterFrame.DOWN_DIRECTION;
+                //this.frameY = CharacterFrame.DOWN_DIRECTION;
             } else {
                 this.y -= this.speed
-                this.frameY = CharacterFrame.UP_DIRECTION;
+                //this.frameY = CharacterFrame.UP_DIRECTION;
             }
 
             this.handleCharacterFrame();

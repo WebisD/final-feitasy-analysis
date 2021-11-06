@@ -1,7 +1,15 @@
 import _ from 'lodash';
 
 export const Skills = [
-    "Clone das sombras",
+    "Flecha ácida", 
+    "Campo Antimagia", 
+    "Olho Arcano", 
+    "Círculo da Morte", 
+    "Sopro Congelante", 
+    "Mãe da natureza", 
+    "Porta Dimensional", 
+    "Chuva de Lâminas", 
+    "Bola de Fogo"
 ];
 
 export const getRandomBreed = (): string => _.sample(Skills)!;
