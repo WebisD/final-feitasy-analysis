@@ -73,13 +73,15 @@ export const run = async (
     jail = new Jail();
     
     player = new Player(playerBreed, nickname);
-    await player.createPlayer();
+    // await player.createPlayer();
 
     merchant = new Merchant();
-    await merchant.createMerchant();
+    // await merchant.createMerchant();
+    
+    jail = new Jail();
 
     princess = new Princess();
-    await princess.createPrincess();
+    // await princess.createPrincess();
 
     render();
 }

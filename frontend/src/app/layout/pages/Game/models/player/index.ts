@@ -90,7 +90,7 @@ export default class Player extends Character {
                     return true;
                 else{
                     this.score++;
-                    deleteCharacterAsync(enemy.id);
+                    // deleteCharacterAsync(enemy.id);
                     return false;
                 }
             });

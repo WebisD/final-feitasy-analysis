@@ -43,7 +43,7 @@ export default abstract class Character implements IDrawable {
 
         ctx.fillStyle = "white";
         ctx.font = "bold 15px Courier New";
-        ctx.fillText(this.nickname + " " + this.id, nicknamePosition.x, nicknamePosition.y);
+        ctx.fillText(this.nickname, nicknamePosition.x, nicknamePosition.y);
     };
 
     protected handleCharacterFrame = () => {
