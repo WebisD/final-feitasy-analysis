@@ -127,8 +127,8 @@ export default class Player extends Character {
             });
 
             if (!aliveEnemies.length){
-                // this.hasWon = true;
-                // princess.thanksFreedom();
+                this.hasWon = true;
+                princess.thanksFreedom();
             }
 
             world.enemies = aliveEnemies;

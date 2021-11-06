@@ -19,7 +19,7 @@ export default abstract class Character implements IDrawable {
     public frame: number = 0;
     public frameY: number = 0;
     public frameLimit: number = 3;
-    public distanceThreshold: number = 5;
+    public distanceThreshold: number = 2;
     public currentDirection: number = 0;
     public currentMovement: number = 0;
     public frameCount: number = 0;
