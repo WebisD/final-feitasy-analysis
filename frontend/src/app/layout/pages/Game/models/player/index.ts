@@ -61,6 +61,8 @@ export default class Player extends Character {
 
             if (pressed_key === 'A' && this.x > world.leftLimit){
                 this.x -= this.speed;
+                this.currentDirection = CharacterFrame.LEFT_DIRECTION;
+                
                 this.frameY = CharacterFrame.LEFT_DIRECTION;
 
                 this.frameY = CharacterFrame.LEFT_DIRECTION;
@@ -80,6 +82,9 @@ export default class Player extends Character {
 
             else if (pressed_key === 'D' && this.x < world.rightLimit - this.width*2){
                 this.x += this.speed;
+                
+                this.currentDirection = CharacterFrame.RIGHT_DIRECTION;
+
                 this.frameY = CharacterFrame.RIGHT_DIRECTION;
                 if(hasCollision(jail, this)){
                     this.x -= this.speed;
@@ -97,6 +102,9 @@ export default class Player extends Character {
 
             else if (pressed_key === 'S' && this.y < world.bottomLimit - this.height*2){
                 this.y += this.speed;
+
+                this.currentDirection = CharacterFrame.DOWN_DIRECTION;
+                
                 this.frameY = CharacterFrame.DOWN_DIRECTION;
                 if(hasCollision(jail, this)){
                     this.y -= this.speed;
@@ -114,6 +122,8 @@ export default class Player extends Character {
 
             else if (pressed_key === 'W' && this.y > world.topLimit){
                 this.y -= this.speed;
+                this.currentDirection = CharacterFrame.UP_DIRECTION;
+
                 this.frameY = CharacterFrame.UP_DIRECTION;
                 if(hasCollision(jail, this)){
                     this.y += this.speed;
@@ -128,7 +138,7 @@ export default class Player extends Character {
                     this.merchantCollision = false;
                 }
             }
-
+        
             this.handleCharacterFrame();
         }
     };
