@@ -66,8 +66,8 @@ export default class Jail implements IDrawable {
         });
 
         if (!aliveEnemies.length && !player.hasWon){
-            player.hasWon = true;
-            princess.thanksFreedom();
+            // player.hasWon = true;
+            // princess.thanksFreedom();
         }
         
         world.enemies = aliveEnemies;

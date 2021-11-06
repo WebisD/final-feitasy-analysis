@@ -20,7 +20,7 @@ import { createCharacterAsync } from '../../transactions/create';
 export default class Enemy extends Character{
     private xDistanceFromTarget: number = 0;
     private yDistanceFromTarget: number = 0;
-    private changeDirection: boolean = true;
+    private moveVertically: boolean = true;
     private directionCount: number = 0;
     private directionCountLimit: number = 30;
 
@@ -73,7 +73,7 @@ export default class Enemy extends Character{
                 sX: 80, sY: 80,
                 frameLimit: 3,
                 frameRatio: 6,
-                speed: 10
+                speed: 4
             }   
         ])!;
 
@@ -86,64 +86,47 @@ export default class Enemy extends Character{
     };
 
     protected move = (e?: KeyboardEvent) => {
+        if (player.pausedGame) return;
+
         this.xDistanceFromTarget = jail.x - this.x;
         this.yDistanceFromTarget = jail.y - this.y;
 
-        if (!player.pausedGame){
-            if (
-                this.xDistanceFromTarget >= jail.x - this.distanceThreshold && this.xDistanceFromTarget <= jail.x + this.distanceThreshold
-                && this.yDistanceFromTarget >= jail.y - this.distanceThreshold && this.yDistanceFromTarget <= jail.y + this.distanceThreshold
-            ){
-                //attack
-                return;
+        if (this.xDistanceFromTarget > this.yDistanceFromTarget && !this.moveVertically) {
+            this.directionCount++;
+
+            if (this.directionCount == this.directionCountLimit){
+                if (this.yDistanceFromTarget >= this.distanceThreshold || this.yDistanceFromTarget <= -this.distanceThreshold)
+                    this.moveVertically = true;
+                this.directionCount = 0;
             }
 
-            if (this.xDistanceFromTarget > this.yDistanceFromTarget && !this.changeDirection) {
-                this.directionCount++;
-                this.changeDirection = false;
-
-                if (this.directionCount == this.directionCountLimit) {
-                    this.changeDirection = true;
-                    this.directionCount = 0;
-                }
-
-                if (this.xDistanceFromTarget > this.distanceThreshold) {
-                    this.x += this.speed;
-                    this.currentDirection = CharacterFrame.RIGHT_DIRECTION;
-                }
-                else {
-                    if (this.xDistanceFromTarget > 0){
-                        console.log(`LEFT - ${this.id}`);
-                    }
-                    this.x -= this.speed;
-                    this.currentDirection = CharacterFrame.LEFT_DIRECTION;
-                }
+            if (this.xDistanceFromTarget + this.distanceThreshold > 0) {
+                this.x += this.speed;
+                this.currentDirection = CharacterFrame.RIGHT_DIRECTION;
             }
-            else if (this.changeDirection){
-                if (this.yDistanceFromTarget >= jail.y - this.distanceThreshold && this.yDistanceFromTarget <= jail.y + this.distanceThreshold) {
-                    this.changeDirection = false;
-                    this.directionCount = 0;
-                    return;
-                }
-
-                this.directionCount++;
-
-                if (this.directionCount == this.directionCountLimit) {
-                    this.changeDirection = false;
-                    this.directionCount = 0;
-                }
-
-                if (this.yDistanceFromTarget + this.distanceThreshold > 0) {
-                    this.y += this.speed;
-                    this.currentDirection = CharacterFrame.DOWN_DIRECTION;
-                }
-                else {
-                    this.y -= this.speed;
-                    this.currentDirection = CharacterFrame.UP_DIRECTION;
-                }
+            else {  
+                this.x -= this.speed;
+                this.currentDirection = CharacterFrame.LEFT_DIRECTION;
             }
-
-            this.handleCharacterFrame();    
         }
+        else if (this.moveVertically){
+            this.directionCount++;
+
+            if (this.directionCount == this.directionCountLimit){
+                this.moveVertically = false ;
+                this.directionCount = 0;
+            }
+
+            if (this.yDistanceFromTarget + this.distanceThreshold > 0) {
+                this.y += this.speed;
+                this.currentDirection = CharacterFrame.DOWN_DIRECTION;
+            }
+            else {
+                this.y -= this.speed;
+                this.currentDirection = CharacterFrame.UP_DIRECTION;
+            }
+        }
+
+        this.handleCharacterFrame();    
     };
 }
