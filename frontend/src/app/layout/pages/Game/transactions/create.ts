@@ -16,7 +16,7 @@ export const createCharacterAsync = async (
 
         const characterId = newUuid();
         
-        /*// Character
+        // Character
         await session.writeTransaction(async tx => {
             await tx.run(`
                 CREATE (:Character
@@ -42,7 +42,7 @@ export const createCharacterAsync = async (
         // Breed
         await session.writeTransaction(async tx => {
             await tx.run(createBreedQuery(characterId, characterBreed));
-        });*/
+        });
 
     session.close();
 

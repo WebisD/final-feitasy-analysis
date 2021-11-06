@@ -13,6 +13,7 @@ import './styles.css';
 import ImgWarrior from '../../../assets/img/warrior.svg';
 import ImgWizard from '../../../assets/img/wizard.svg';
 import ImgArcher from '../../../assets/img/archer.svg';
+import ImgLogo from '../../../assets/img/logo.png';
 
 const Game: React.FC = () => {
     const isPlaying = useAppSelector(isPlayingSelector);
@@ -28,7 +29,12 @@ const Game: React.FC = () => {
 
             {!isCreated  ?
                 <div className="d-flex select-character flex-column align-items-center justify-content-center">
-                    
+                    <img 
+                        className="mb-5"
+                        src={ImgLogo}
+                        alt = "Logo"
+
+                    />
                     <div className="player-name-field form-group">
                         <label htmlFor="nickname">Nickname:</label>
                         <input 

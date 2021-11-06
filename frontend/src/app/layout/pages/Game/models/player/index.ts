@@ -33,20 +33,22 @@ export default class Player extends Character {
         else
             this.sprite.src = archerImage
 
-        /* If a new player is joining the game, add keyboard event listener */
-        window.addEventListener("keydown", this.move, false);
-        window.addEventListener("keydown", this.pauseGame, false);
+        
     }
 
     public createPlayer = async () => {
         this.id = await createCharacterAsync(this.breed, this.nickname);
+        /* If a new player is joining the game, add keyboard event listener */
+        window.addEventListener("keydown", this.move, false);
+        window.addEventListener("keydown", this.pauseGame, false);
     };
 
     public move = (e?:KeyboardEvent) => {
         const pressed_key = e!.key.toUpperCase();
 
         // Interacts with merchant if collides
-        if(hasCollision(this, merchant)){
+        if(this.x + 20 < merchant.x + merchant.width && this.x + 20 + this.width > merchant.x &&
+            this.y + 20 < merchant.y + merchant.height && this.y + 20 + this.height > merchant.y){
             if (pressed_key === 'ENTER')
                 this.interactWithMerchant();
         }
