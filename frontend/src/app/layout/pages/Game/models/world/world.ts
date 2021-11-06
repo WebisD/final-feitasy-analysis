@@ -3,11 +3,10 @@ import IDrawable from "../../common/IDrawable";
 import Enemy from '../enemy';
 
 import { player } from "../../features";
+import { createCharacterAsync} from "../../transactions/create";
 
 // Utils
 import { getCanvasRef } from "../../utils/references";
-import { createCharacterAsync } from "../../transactions/create";
-
 
 const worldImage = new Image();
 worldImage.src = "https://opengameart.org/sites/default/files/03_10.png";
@@ -48,7 +47,7 @@ export default class World implements IDrawable {
 
         if(!!this.enemies){
             if(this.enemies.length === 0){
-                ctx.drawImage(winImage, 0, 0, canvas.width, canvas.height);
+                // ctx.drawImage(winImage, 0, 0, canvas.width, canvas.height);
                 // window.location.reload();
             }
         }
@@ -56,8 +55,8 @@ export default class World implements IDrawable {
 
     public generateEnemies = async () => {
         const { canvas } = getCanvasRef();
-        const [minEnemiesAmount, maxEnemiesAmount] = [3, 3];
-        const offset = 100;
+        const [minEnemiesAmount, maxEnemiesAmount] = [3, 10];
+        const offset = -200;
 
         const enemiesList: Enemy[] = [];
         const enemiesAmount = _.random(minEnemiesAmount, maxEnemiesAmount, false);
@@ -73,9 +72,9 @@ export default class World implements IDrawable {
             
             const newEnemy = new Enemy(randomCoordsX, randomCoordsY);
 
-            const enemyId = await createCharacterAsync(newEnemy.breed, newEnemy.nickname);
+            // const enemyId = await createCharacterAsync(newEnemy.breed, newEnemy.nickname);
 
-            newEnemy.id = enemyId;
+            // newEnemy.id = enemyId;
 
             enemiesList.push(newEnemy);
         };
