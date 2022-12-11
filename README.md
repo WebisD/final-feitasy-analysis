@@ -14,7 +14,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/antuniooh/final-feitasy-analysis">
-    <img src="https://github.com/henriquevital00/final-feitasy-analysis/blob/main/Images/Logo.png" alt="Logo" width="550">
+    <img src="https://github.com/antuniooh/final-feitasy-analysis/blob/main/projeto-fei.png" alt="Logo" width="550">
   </a>
 </p>
 
@@ -47,7 +47,7 @@
 Semester project of the Advanced Topics Database subject, taught at Centro Universitário FEI.
 It consists of a database for an MMORPG game. It presents the relational model, entity model, as well as all queries necessary for creation and insertion in the database.
 
-![image](https://github.com/antuniooh/Relic/blob/main/Gifs/gifsPrestador/marketplace.gif)
+![image](https://github.com/antuniooh/final-feitasy-analysis/blob/main/projetoFeitasy.png)
 
 
 <!-- HOW TO RUN -->
