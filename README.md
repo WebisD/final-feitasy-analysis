@@ -1,28 +1,29 @@
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/antuniooh/Relic">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/antuniooh/final-feitasy-analysis">
 
-  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/antuniooh/Relic">
+  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/antuniooh/final-feitasy-analysis">
   
-  <a href="https://github.com/antuniooh/Relic/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/antuniooh/Relic">
+  <a href="https://github.com/antuniooh/final-feitasy-analysis/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/antuniooh/final-feitasy-analysis">
   </a>
   
-   <img alt="GitHub" src="https://img.shields.io/github/license/antuniooh/Relic">
+   <img alt="GitHub" src="https://img.shields.io/github/license/antuniooh/final-feitasy-analysis">
 </p>
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/antuniooh/Relic">
-    <img src="https://github.com/henriquevital00/Relic/blob/main/Images/Logo.png" alt="Logo" width="550">
+  <a href="https://github.com/antuniooh/final-feitasy-analysis">
+    <img src="https://github.com/henriquevital00/final-feitasy-analysis/blob/main/Images/Logo.png" alt="Logo" width="550">
   </a>
 </p>
 
 <p align="center">
-  <img alt="Figma" src="https://img.shields.io/badge/Figma-yellow?style=for-the-badge&logo=figma#&logoColor=white"/>
-  <img alt="Software" src="https://img.shields.io/badge/Software-orange?style=for-the-badge&logo=software&logoColor=white"/>
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge&logo=javascript&logoColor=white"/>
+  <img alt="TypeScript" src="https://img.shields.io/badge/Typescript-blue?style=for-the-badge&logo=typescript&logoColor=white"/>
+  <img alt="Node" src="https://img.shields.io/badge/Node-green?style=for-the-badge&logo=node&logoColor=white"/>
+  <img alt="CSS" src="https://img.shields.io/badge/CSS-darkblue?style=for-the-badge&logo=css3&logoColor=white"/>
 </p>
-
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
